@@ -16,5 +16,8 @@ Abrir [http://localhost:3000](http://localhost:3000) para ver el proyecto.
 Coordinador: Maximiliano Blanco
 Referente: Alan(ScorpionConMate)
 
+
 Equipo:
+
+Gilberto (@Rortan)
 David Lipshitz
