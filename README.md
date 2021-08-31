@@ -15,4 +15,4 @@ Abrir [http://localhost:3000](http://localhost:3000) para ver el proyecto.
 
 Coordinador: Maximiliano Blanco
 
-Equipo: Rortan (@rortan134)
+Equipo: Gilberto (@Rortan)
