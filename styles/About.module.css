@@ -1,13 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Roboto:wght@400;700&display=swap');
 
-.textContainer{
-    display: flex;
 
-    width:100vw;
-    justify-content: center;
+.background{
+   margin: 0px;
+   background: transparent radial-gradient(closest-side at 50% 50%, #FFFFFF 0%, #E7E7E7 100%) 0% 0% no-repeat padding-box;
 }
 
-.main{
+
+.textContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top:0px;
+}
+
+.textContainer2{
+    display: flex;
+    flex-direction: column;
+    width:100vw;
+    justify-content: center;
+    margin-top:0px;
+}
+
+.articulo{
+    min-width: 204px;
     text-align: center;
     margin: 10px 30px;
     flex-direction: row;
@@ -33,18 +49,25 @@
     font-size: 36px;
     font-family: Amatic SC;
     text-align: center;
+    color:#001E00;
 }
 
 .negrita{
     font-family: Roboto; 
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
     text-align: center;
+    color:#001E00;
 }
 
 .text{
     font-family: Roboto;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400; 
     text-align: center;
+    margin:0px;
+    color:#001E00;
 }
+
+
+
