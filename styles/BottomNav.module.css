@@ -1,4 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+
 .container {
   display: flex;
   flex-direction: row;
+}
+
+.text {
+  font-family: 'Amatic SC', cursive;
+  font-size: 24px;
+  color: black;
+}
+
+.button {
+  padding: 0 0.8rem;
+}
+
+.button a {
+  text-decoration: none;
 }

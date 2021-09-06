@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '../styles/BottomNavButton.module.css';
+import styles from '../styles/BottomNav.module.css';
 
 const BottomNavButton = ({ text, route, icon }) => {
   return (
