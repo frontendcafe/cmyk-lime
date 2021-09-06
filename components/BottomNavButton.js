@@ -7,7 +7,7 @@ const BottomNavButton = ({ text, route, icon }) => {
     <div className={styles.button}>
       <Link href={route}>
         <a>
-          <Image alt="" src={icon}></Image>
+          <Image alt="" src={icon} />
           <h1 className={styles.text}>{text}</h1>
         </a>
       </Link>

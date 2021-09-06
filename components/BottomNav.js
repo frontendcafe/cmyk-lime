@@ -6,14 +6,14 @@ import styles from '../styles/BottomNav.module.css';
 
 const BottomNav = () => {
   return (
-    <div className={styles.container}>
-      <BottomNavButton text={'Acerca'} route={'/About'} icon={aboutIcon} />
+    <div className={styles.containerBtn}>
+      <BottomNavButton text={'Acerca'} route={'/about'} icon={aboutIcon} />
       <BottomNavButton
         text={'Info Padres'}
-        route={'/Info'}
+        route={'/info'}
         icon={parentsIcon}
       />
-      <BottomNavButton text={'Más Libros'} route={'/More'} icon={bookIcon} />
+      <BottomNavButton text={'Más Libros'} route={'/more'} icon={bookIcon} />
     </div>
   );
 };
