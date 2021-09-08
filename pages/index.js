@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import { motion } from 'framer-motion';
+import BottomNav from '../components/BottomNav';
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
           </h1>
         </motion.div>
       </main>
+      <BottomNav />
     </div>
   );
 }
