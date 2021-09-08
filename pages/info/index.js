@@ -1,27 +1,14 @@
-import Head from 'next/head';
+import styles from './info.module.css';
 
-const styles = {
-    h1: {
-        fontFamily: 'Amatic SC',
-        fontStyle: 'cursive'
-    },
-    h2: {
-        fontFamily: 'Amatic SC',
-        fontStyle: 'cursive'
-    },
-    paragraph: {
-        fontFamily: 'Roboto',
-        fontStyle: 'normal'
-    }
-}
-
-export default function Info() {
+function Info() {
     return (
-        <div>
-            <h1 style={styles.h1}>Info para padres</h1>
-            <h2 style={styles.h2}>INFORMACION IMPORTANTE</h2>
-            <p style={styles.paragraph}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh ipsum consequat nisl vel. Magna fringilla urna porttitor rhoncus dolor purus non enim. Sagittis aliquam malesuada bibendum arcu. Enim ut sem viverra aliquet eget sit amet tellus. Ut aliquam purus sit amet luctus venenatis lectus. Volutpat diam ut venenatis tellus in metus. Sem viverra aliquet eget sit amet. Aliquam ut porttitor leo a diam sollicitudin. Sed vulputate odio ut enim blandit volutpat. Non sodales neque sodales ut etiam. Justo donec enim diam vulputate ut pharetra sit amet. </p>
+        <div className={styles.body}>
+            <h1 className={styles.h1}>Info para Padres</h1>
+            <h2 className={styles.h2}>INFORMACION IMPORTANTE</h2>
+            <p className={styles.p}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec odio justo, congue a tortor tincidunt, euismod placerat sem. Ut commodo fermentum ex ac semper. Nunc ac cursus mi, non condimentum est. Phasellus purus eros, tincidunt et est sed, egestas lacinia nunc. Donec volutpat urna eu ante vulputate hendrerit a sed turpis. Aenean blandit ut orci lacinia tincidunt. Morbi efficitur viverra molestie. Nam ullamcorper lectus felis, auctor faucibus velit eleifend non. Cras auctor ligula sit amet nisi porta placerat. Nunc libero ligula, sollicitudin eu ante a, ultrices semper turpis. Sed ac mattis augue. Nunc lobortis, neque eget pellentesque ornare, erat orci sodales erat, vel mattis turpis sem sed lectus.</p>
 
         </div>
     )
 }
+
+export default Info;
