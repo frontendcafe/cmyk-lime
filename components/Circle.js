@@ -63,6 +63,7 @@ const Circle = () => {
     };
 
     handleTimeOut();
+    /*aqui faltaria agregar los useRefs para que el linter no levante esto. se hara mas adelante.  */
   }, []);
   return (
     <div>

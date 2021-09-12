@@ -1,4 +1,5 @@
 import styles from '../../styles/Home.module.css';
+import Circle from '../../components/Circle';
 
 export default function Page5() {
   return (
