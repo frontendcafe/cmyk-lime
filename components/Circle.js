@@ -38,6 +38,8 @@ const Circle = () => {
   }, []);
   return (
     <div>
+      <motion.div style={topRightCircle}></motion.div>
+      <motion.div style={leftBottomCircle}></motion.div>
       <svg
         width="150"
         height="150"
