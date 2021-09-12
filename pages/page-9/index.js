@@ -16,12 +16,6 @@ const PageNine = () => {
             <div className={styles.circlefacesmile}>
                 <CircleFaceSmile />
             </div>
-            {/*<div className={styles.facesmile}>
-            <FaceSmile />
-            </div> */}
-            {/* <div className={styles.circleone}>
-            <CircleOne />
-            </div>  */}
             <h1 className={styles.h1}>MOVERME A LA IZQUIERDA</h1>
         </div>
     )
