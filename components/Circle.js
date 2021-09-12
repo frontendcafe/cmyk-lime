@@ -1,6 +1,18 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
+/**
+ * lo que estoy intentando hacer es hacer la animacion correspondiente
+ * para que los elementos pasen de su estado inicial (imagen 1 en el PR) a
+ * su estado final (imagen 2 en el PR).
+ *
+ * el issue pide que se armen carpetas y paginas, pero por ahora quiero concentrarme en la funcionalidad.
+ *
+ * decidi pasar los estilos por medio de una variable y usando setState.
+ * trate de usar un archivo modulo css pero tuve un par de problemas.
+ * si es mas optimo que sea con un archivo de estilo, entonces mas adelante lo hare.
+ */
+
 const Circle = () => {
   const circleStyle = {
     border: '2px dashed #cccccc',
@@ -19,11 +31,27 @@ const Circle = () => {
     opacity: 1,
   };
 
+  /**
+   * probablemente sea mejor usar un array para setear los estados iniciales, en vez de
+   * 4 variables distintas. mas adelante lo optimizare.
+   *
+   * los primeros dos estados tienen el mismo estado inicial, pero eventualmente van a tener
+   * animaciones distintas, por eso los hice 2 variables diferentes en vez de una sola.
+   */
+
   const [topRightCircle, setTopRightCircle] = useState(circleStyle);
   const [leftBottomCircle, setLeftBottomCircle] = useState(circleStyle);
   const [faceBlush, setFaceBlush] = useState(faceBlushStyle);
   const [faceSmile, setFaceSmile] = useState(faceSmileStyle);
 
+  /**
+   * la primera animacion de las que me toca a mi se dispara sola en el diseño.
+   * por eso use un setTimeout dentro de un useEffect para hacer aparecer los elementos de esa animacion.
+   * la funcion esta incompleta, tengo que agregarle la parte de framer motion porque los circulos no solo
+   * tienen que aparecer sino tambien moverse hacia los extremos. esto lo hare con animate y variants
+   *
+   * la idea tambien es cambiar todos los setState a un array mas adelante.
+   */
   useEffect(() => {
     const handleTimeOut = () => {
       setTimeout(function () {
@@ -38,6 +66,7 @@ const Circle = () => {
   }, []);
   return (
     <div>
+      {/* parte incompleta. aqui faltan las definiciones de motion.  */}
       <motion.div style={topRightCircle}></motion.div>
       <motion.div style={leftBottomCircle}></motion.div>
       <svg
