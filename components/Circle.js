@@ -1,4 +1,23 @@
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+
 const Circle = () => {
+  const circleStyle = {
+    border: '2px dashed #cccccc',
+    borderRadius: '50%',
+    opacity: 0,
+    width: '150px',
+    height: '150px',
+    position: 'absolute',
+  };
+
+  const faceBlushStyle = {
+    opacity: 0,
+  };
+
+  const faceSmileStyle = {
+    opacity: 1,
+  };
   return (
     <div>
       <svg
