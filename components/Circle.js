@@ -18,6 +18,24 @@ const Circle = () => {
   const faceSmileStyle = {
     opacity: 1,
   };
+
+  const [topRightCircle, setTopRightCircle] = useState(circleStyle);
+  const [leftBottomCircle, setLeftBottomCircle] = useState(circleStyle);
+  const [faceBlush, setFaceBlush] = useState(faceBlushStyle);
+  const [faceSmile, setFaceSmile] = useState(faceSmileStyle);
+
+  useEffect(() => {
+    const handleTimeOut = () => {
+      setTimeout(function () {
+        setTopRightCircle({ ...topRightCircle, opacity: 1 });
+        setLeftBottomCircle({ ...leftBottomCircle, opacity: 1 });
+        setFaceBlush({ ...faceBlush, opacity: 1 });
+        setFaceSmile({ ...faceSmile, opacity: 0 });
+      }, 3000);
+    };
+
+    handleTimeOut();
+  }, []);
   return (
     <div>
       <svg
