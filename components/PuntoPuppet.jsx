@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 const PuntoPuppet = ({
   happy,
   blushed,
@@ -14,7 +16,13 @@ const PuntoPuppet = ({
   return (
     <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
       <g id="PuntoPuppet">
-        <g id="green_blob" clipPath="M0 0h100v100H0z">
+        <motion.g
+          animate={{ rotate: 360 }}
+          initial={{ rotate: 1 }}
+          transition={{ ease: 'linear', duration: 10, repeat: Infinity }}
+          id="green_blob"
+          clipPath="M0 0h100v100H0z"
+        >
           <g id="blob" fill="#4CCD43" fillOpacity=".1">
             <path
               id="Vector"
@@ -138,8 +146,8 @@ const PuntoPuppet = ({
               fillOpacity=".35"
             />
           </g>
-        </g>
-        <g id="face_main">
+        </motion.g>
+        <motion.g id="face_main">
           <g id="Face" fill="#001E00">
             <g id="MouthBlushed" fillOpacity={blushed ? '.12' : '0'}>
               <g id="Smile">
@@ -1573,7 +1581,7 @@ const PuntoPuppet = ({
               />
             </g>
           </g>
-        </g>
+        </motion.g>
       </g>
     </svg>
   );

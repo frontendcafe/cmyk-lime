@@ -16,17 +16,14 @@ export default function Home() {
       <main className={styles.main}>
         <motion.div
           drag
-          dragConstraints={{
-            top: -50,
-            left: -50,
-            right: 50,
-            bottom: 50,
-          }}
-          whileHover={{ scale: 1.3 }}
+          whileHover={{ scale: 1.1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 1.5 }}
         >
           {/* Prueben cambiar de happy a blushed o a surprised y traten que abra los ojos */}
           {/* Pasar una prop asi es equivalente a happy={true} */}
-          <PuntoPuppet happy eyesClosed />
+          <PuntoPuppet happy eyesOpen />
         </motion.div>
       </main>
       <BottomNav />
