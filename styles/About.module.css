@@ -1,73 +1,71 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Roboto:wght@400;700&display=swap');
 
-
-.background{
-   margin: 0px;
-   background: transparent radial-gradient(closest-side at 50% 50%, #FFFFFF 0%, #E7E7E7 100%) 0% 0% no-repeat padding-box;
+.background {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: transparent
+    radial-gradient(closest-side at 50% 50%, #ffffff 0%, #e7e7e7 100%) 0% 0%
+    no-repeat padding-box;
 }
 
-
-.textContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top:0px;
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
 }
 
-.textContainer2{
+.textContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.articulo {
+  min-width: 12rem;
+  text-align: center;
+  margin: 10px 30px;
+  flex-direction: row;
+}
+
+.lime {
+  text-align: center;
+  font-size: 5rem;
+  font-family: Amatic SC;
+  color: #4ccd43;
+}
+
+.title {
+  margin: 0;
+  font-size: 2.5rem;
+  font-family: Amatic SC;
+  text-align: center;
+  color: #001e00;
+}
+
+.negrita {
+  font-family: Roboto;
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-align: center;
+  color: #001e00;
+}
+
+.text {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  margin: 0px;
+  color: #001e00;
+}
+
+@media (max-width: 600px) {
+  .textContainer {
     display: flex;
     flex-direction: column;
-    width:100vw;
     justify-content: center;
-    margin-top:0px;
+  }
 }
-
-.articulo{
-    min-width: 204px;
-    text-align: center;
-    margin: 10px 30px;
-    flex-direction: row;
-}
-
-.container{
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;;
-    align-items: center;
-    justify-content: center;
-}
-
-.lime{
-    text-align: center;
-    font-size: 64px;
-    font-family: Amatic SC;
-    color: #4ccd43;
-}
-
-.title{
-    margin:0;
-    font-size: 36px;
-    font-family: Amatic SC;
-    text-align: center;
-    color:#001E00;
-}
-
-.negrita{
-    font-family: Roboto; 
-    font-size: 20px;
-    font-weight: 700;
-    text-align: center;
-    color:#001E00;
-}
-
-.text{
-    font-family: Roboto;
-    font-size: 16px;
-    font-weight: 400; 
-    text-align: center;
-    margin:0px;
-    color:#001E00;
-}
-
-
-
