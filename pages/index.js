@@ -2,6 +2,7 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import { motion } from 'framer-motion';
 import BottomNav from '../components/BottomNav';
+import PuntoPuppet from '../components/PuntoPuppet';
 
 export default function Home() {
   return (
@@ -23,9 +24,9 @@ export default function Home() {
           }}
           whileHover={{ scale: 1.3 }}
         >
-          <h1 className={styles.title}>
-            Welcome Team <span className={styles.lime}>Lime</span>!
-          </h1>
+          {/* Prueben cambiar de happy a blushed o a surprised y traten que abra los ojos */}
+          {/* Pasar una prop asi es equivalente a happy={true} */}
+          <PuntoPuppet happy eyesClosed />
         </motion.div>
       </main>
       <BottomNav />
