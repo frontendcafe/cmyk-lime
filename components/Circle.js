@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
  * para que los elementos pasen de su estado inicial (imagen 1 en el PR) a
  * su estado final (imagen 2 en el PR).
  *
- * el issue pide que se armen carpetas y paginas, pero por ahora quiero concentrarme en la funcionalidad.
+ *
  *
  * decidi pasar los estilos por medio de una variable y usando setState.
  * trate de usar un archivo modulo css pero tuve un par de problemas.
