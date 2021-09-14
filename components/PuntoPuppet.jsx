@@ -14,7 +14,7 @@ const PuntoPuppet = ({
   return (
     <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
       <g id="PuntoPuppet">
-        <g id="green_blob" clipPath="M0 0h100v100H0z"></g>
+        <g id="green_blob" clipPath="M0 0h100v100H0z">
           <g id="blob" fill="#4CCD43" fillOpacity=".1">
             <path
               id="Vector"
