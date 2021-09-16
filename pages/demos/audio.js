@@ -25,11 +25,11 @@ export default function AudioPage() {
   function handleAudio() {
     const audioRef = useRef()
     if (!playing) {
-      audioDiv.play();
+      audioRef.play();
       setPlay(true);
       setAudioString('Pause Audio');
     } else {
-      audioDiv.pause();
+      audioRef.pause();
       setPlay(false);
       setAudioString('Play Audio');
     }
