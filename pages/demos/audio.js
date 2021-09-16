@@ -1,15 +1,12 @@
 import { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
+
 import styles from '../../styles/Audio.module.css';
+import { supabase } from './supabase';
 
 export default function AudioPage() {
   const [playing, setPlay] = useState(false);
   const [dataSet, setData] = useState('');
   const [audioString, setAudioString] = useState('Play Audio');
-
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
-  const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
   useEffect(() => {
     // Fetch Sound.mp3 de supabase storage
@@ -20,14 +17,13 @@ export default function AudioPage() {
 
       const soundUrl = data.signedURL;
       setData(soundUrl);
-      console.log(soundUrl);
     }
     handleStorage();
   }, []);
 
   // Pause y Play & texto
   function handleAudio() {
-    const audioDiv = document.querySelector('.videoAudio');
+    const audioRef = useRef()
     if (!playing) {
       audioDiv.play();
       setPlay(true);
@@ -46,7 +42,7 @@ export default function AudioPage() {
           <button className={styles.playButton} onClick={handleAudio}>
             {audioString}
           </button>
-          <audio controls autoplay className="videoAudio">
+          <audio controls autoplay ref={audioRef}>
             <source src={dataSet} type="audio/mpeg"></source>
           </audio>
         </div>
