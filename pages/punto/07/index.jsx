@@ -27,7 +27,7 @@ export default function Home() {
           <PuntoPuppet smile eyesOpen />
         </motion.div>
       </main>
-      <BottomHome />
+      <BottomHome></BottomHome>
     </div>
   );
 }
