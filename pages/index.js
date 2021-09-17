@@ -3,8 +3,14 @@ import styles from '../styles/Home.module.css';
 import { motion } from 'framer-motion';
 import BottomNav from '../components/BottomNav';
 import PuntoPuppet from '../components/PuntoPuppet';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 export default function Home() {
+  const router = useRouter();
+  const nextPage = () => {
+    console.log('Finished');
+  };
   return (
     <div className={styles.container}>
       <Head>
@@ -15,8 +21,8 @@ export default function Home() {
 
       <main className={styles.main}>
         <motion.div
-          drag
-          whileHover={{ scale: 1.1 }}
+          drag="x"
+          whileHover={{ scale: 1.3 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1.5 }}

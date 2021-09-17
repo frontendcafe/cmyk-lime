@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 const PuntoPuppet = ({
   happy,
@@ -9,12 +10,32 @@ const PuntoPuppet = ({
   eyesOpen,
   eyesClosed,
   eyesAngled,
+  motionConfig = {},
 }) => {
   // Pueden manejar que cara muestra pasando props a este componente.
   // Esta es una manera rapida de pasarle booleanos y marcar que cara mostrar
   // No es la mejor estructura pero algo para mostrar como configurar un svg rapido
+  const [variant, setVariant] = useState('static');
+  const variants = {
+    static: { x: 0 },
+    movingRight: {
+      x: 15,
+    },
+    movingLeft: {
+      x: 15,
+    },
+  };
+
   return (
-    <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+    <motion.svg
+      {...motionConfig}
+      onDrag={(e) => console.log(e)}
+      onDragStart={() => setVariant('moving')}
+      onDragEnd={() => setVariant('static')}
+      width="100"
+      height="100"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <g id="PuntoPuppet">
         <motion.g
           animate={{ rotate: 360 }}
@@ -147,9 +168,9 @@ const PuntoPuppet = ({
             />
           </g>
         </motion.g>
-        <motion.g id="face_main">
+        <motion.g animate={variant} variants={variants} id="face_main">
           <g id="Face" fill="#001E00">
-            <g id="MouthBlushed" fillOpacity={blushed ? '.12' : '0'}>
+            <g id="MouthBlushed" fillOpacity={blushed ? mouth : '0'}>
               <g id="Smile">
                 <path
                   id="Vector_30"
@@ -1583,7 +1604,7 @@ const PuntoPuppet = ({
           </g>
         </motion.g>
       </g>
-    </svg>
+    </motion.svg>
   );
 };
 
