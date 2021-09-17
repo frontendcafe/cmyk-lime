@@ -16,21 +16,34 @@ const PuntoPuppet = ({
   // Esta es una manera rapida de pasarle booleanos y marcar que cara mostrar
   // No es la mejor estructura pero algo para mostrar como configurar un svg rapido
   const [variant, setVariant] = useState('static');
+  const [savedX, setSavedX] = useState(null);
   const variants = {
     static: { x: 0 },
     movingRight: {
       x: 15,
     },
     movingLeft: {
-      x: 15,
+      x: -15,
     },
+  };
+
+  const moveFace = (x) => {
+    if (savedX === null) {
+      setSavedX(x);
+      return;
+    }
+
+    if (savedX < x) setVariant('movingRight');
+
+    if (savedX > x) setVariant('movingLeft');
+
+    setSavedX(x);
   };
 
   return (
     <motion.svg
       {...motionConfig}
-      onDrag={(e) => console.log(e)}
-      onDragStart={() => setVariant('moving')}
+      onDrag={(e) => moveFace(e.x)}
       onDragEnd={() => setVariant('static')}
       width="100"
       height="100"
