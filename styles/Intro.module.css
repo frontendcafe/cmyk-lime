@@ -18,7 +18,7 @@
 
 
 /*--------------------------------*/
-
+.circle01{}
 .text_circle01{
    text-align: center;
    margin-top: -10%;
@@ -57,15 +57,18 @@
 /*-------------------------*/
 .click{
     cursor: pointer;
-    animation-name: rotateIn;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* animation-name: rotateIn;
     animation-duration: 4s ease;
     animation-fill-mode: both;
     display: block;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto; */
 } 
 
-@keyframes rotateIn {
+/* @keyframes rotateIn {
     0% {
         transform-origin: center;
         transform: rotate3d(0, 0, 1, -200deg);
@@ -76,7 +79,7 @@
         transform: none;
         opacity: 1;
     }
-}
+} */
 
 
 
