@@ -10,6 +10,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@use-gesture/react": "*",
     "framer-motion": "^4.1.17",
     "next": "11.1.1",
     "react": "17.0.2",

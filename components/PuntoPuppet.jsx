@@ -51,9 +51,7 @@ const PuntoPuppet = ({
     >
       <g id="PuntoPuppet">
         <motion.g
-          animate={{ rotate: 360 }}
-          initial={{ rotate: 1 }}
-          transition={{ ease: 'linear', duration: 10, repeat: Infinity }}
+          animate={{ scale: savedX ? savedX * 0.001 : 1 }}
           id="green_blob"
           clipPath="M0 0h100v100H0z"
         >
