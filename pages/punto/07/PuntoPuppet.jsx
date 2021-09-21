@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { motion } from 'framer-motion';
 
 const PuntoPuppet = ({
@@ -11,12 +13,46 @@ const PuntoPuppet = ({
   eyesAngled,
   rightEyeOpen,
   leftEyesClosed,
+  onDragEnd,
+  motionConfig = {},
 }) => {
-  // Pueden manejar que cara muestra pasando props a este componente.
-  // Esta es una manera rapida de pasarle booleanos y marcar que cara mostrar
-  // No es la mejor estructura pero algo para mostrar como configurar un svg rapido
+  const [variant, setVariant] = useState('static');
+  const [savedY, setSavedY] = useState(null);
+  const variants = {
+    static: { y: 0 },
+    movingTop: {
+      y: 15,
+    },
+    movingBottom: {
+      y: -15,
+    },
+  };
+  const moveFace = (y) => {
+    if (savedY === null) {
+      setSavedY(y);
+      return;
+    }
+
+    if (savedY < y) setVariant('movingTop');
+
+    if (savedY > y) setVariant('movingBottom');
+
+    setSavedY(y);
+  };
   return (
-    <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+    <motion.svg
+      {...motionConfig}
+      onDrag={(e) => moveFace(e.y)}
+      onDragEnd={() => {
+        setVariant('static');
+        if (onDragEnd) {
+          onDragEnd();
+        }
+      }}
+      width="100"
+      height="100"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <g id="PuntoPuppet">
         <motion.g
           animate={{ rotate: 360 }}
@@ -149,9 +185,9 @@ const PuntoPuppet = ({
             />
           </g>
         </motion.g>
-        <g id="face_main">
+        <motion.g animate={variant} variants={variants} id="face_main">
           <g id="Face" fill="#001E00">
-            <g id="MouthBlushed" fillOpacity={blushed ? '.12' : '0'}>
+            <g id="MouthBlushed" fillOpacity={blushed ? mouth : '0'}>
               <g id="Smile">
                 <path
                   id="Vector_30"
@@ -1583,9 +1619,9 @@ const PuntoPuppet = ({
               />
             </g>
           </g>
-        </g>
+        </motion.g>
       </g>
-    </svg>
+    </motion.svg>
   );
 };
 
