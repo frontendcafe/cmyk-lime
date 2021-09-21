@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import { useTransform, useMotionValue } from 'framer-motion';
 
 const PuntoPuppet = ({
@@ -14,80 +13,33 @@ const PuntoPuppet = ({
   motionConfig = {},
   dragStart,
 }) => {
-  // Pueden manejar que cara muestra pasando props a este componente.
-  // Esta es una manera rapida de pasarle booleanos y marcar que cara mostrar
-  // No es la mejor estructura pero algo para mostrar como configurar un svg rapido
-
-  //   const [blushedFace, setBlushedFace] = useState(blushed);
-  //   const [happyFace, setHappyFace] = useState(happy);
-  const [testVar, setTestVar] = useState(1);
-  const [prevX, setPrevX] = useState(0);
-  const [variant, setVariant] = useState('static');
-  const [savedX, setSavedX] = useState(null);
+  /*
+  el svg invisible esta en la linea 1626, al fondo de todo
+  */
   const x = useMotionValue(0);
   const scale = useTransform(
     x,
     [25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300],
-    // [1.16, 1.32, 1.48, 1.64, 1.85, 2, 2.16, 2.32, 2.48, 2.64, 2.85, 3]
     [1.32, 1.64, 1.96, 2.28, 2.6, 2.92, 3.26, 3.58, 3.9, 4.22, 4.54, 4.86]
   );
-  const variants = {
-    static: { x: 0 },
-    movingRight: {
-      x: 15,
-    },
-    movingLeft: {
-      x: -15,
-    },
-  };
 
-  const handleDragStart = () => {};
-  const handleDrag = (x) => {
-    console.log(x);
-    if (x > prevX) {
-      setTestVar(x * 0.003);
-    }
-    setPrevX(x);
-    console.log(testVar);
-  };
-  const moveFace = (x) => {
-    if (savedX === null) {
-      setSavedX(x);
-      return;
-    }
-
-    if (savedX < x) setVariant('movingRight');
-
-    if (savedX > x) setVariant('movingLeft');
-
-    setSavedX(x);
-  };
+  const HandleDrag = () => {};
 
   return (
     <motion.svg
-      {...motionConfig}
-      //   onDrag={(e) => moveFace(e.x)}
-      //   onDrag={(e) => moveFace }
-
-      //   onDrag={() => console.log(testVar)}
-      //   onDrag={(e) => handleDrag(e.x)}
-      //   dragConstraints={{
-      //     top: 1,
-      //     left: 1,
-      //     right: 1,
-      //     bottom: 1,
-      //   }}
-      drag
-      dragConstraints={{
-        top: -50,
-        left: -50,
-        right: 50,
-        bottom: 50,
-      }}
-      onDragStart={dragStart}
-      style={{ x: x, scale: scale }}
       width="100"
       height="100"
+      // style={{ x: x, scale: scale }}
+
+      /* 
+      si style va en el svg, como esta ahora, todo el svg crece y habria que reducir el scale de la 
+      carita dinamicamente. si el style va en el green blob, la carita no necesita ser ajustada
+      pero si tiene que ser actualizado dinamicamente el tamaño del svg porque sino el blob
+      queda "atrapado" adentro
+      
+  
+      */
+
       xmlns="http://www.w3.org/2000/svg"
     >
       <g id="PuntoPuppet">
@@ -222,12 +174,7 @@ const PuntoPuppet = ({
             />
           </g>
         </motion.g>
-        <motion.g
-          // animate={variant}
-          // variants={variants}
-          animate={{ scale: 1 }}
-          id="face_main"
-        >
+        <motion.g id="face_main">
           <g id="Face" fill="#001E00">
             <g id="MouthBlushed" fillOpacity={blushed ? '0.12' : '0'}>
               <g id="Smile">
@@ -1661,6 +1608,19 @@ const PuntoPuppet = ({
               />
             </g>
           </g>
+          <motion.g
+            drag
+            dragConstraints={{
+              top: -50,
+              left: -50,
+              right: 50,
+              bottom: 50,
+            }}
+            onDrag={(e) => HandleDrag(e.x)}
+            onDragStart={dragStart}
+          >
+            <path id="Vector ext" d="M150 0H0V150H150V0Z" opacity="0" />
+          </motion.g>
         </motion.g>
       </g>
     </motion.svg>
