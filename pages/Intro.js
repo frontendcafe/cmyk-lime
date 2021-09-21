@@ -1,11 +1,21 @@
-import styles from '../styles/Intro.module.css';
+import styles from './intro/Intro.module.css';
 import { motion, useCycle, AnimatePresence } from 'framer-motion';
 
+import ButtomNav from './intro/components/ButtomNav';
 
-import { Splash } from "/components/01_Splash";
-import { Hola } from "/components/03_Hola.js";
-import { SiJuegas } from "/components/02_SiJuegas.js";
-import { MuchasCosas } from "/components/04_MuchasCosas.js";
+//import { ButtomNav } from './intro/components/ButtomNav'
+//import { BottomNavButtom } from './intro/components/BottomNavButton'
+
+//render de ButtonNav 
+//pasar texto como props
+//rutear página siguiente
+//home buttom 
+
+
+import { Splash } from "./intro/components/01_Splash";
+import { Hola } from "./intro/components/03_Hola.js";
+import { SiJuegas } from "./intro/components/02_SiJuegas.js";
+import { MuchasCosas } from "./intro/components/04_MuchasCosas.js";
 
 
 
@@ -18,7 +28,6 @@ import { MuchasCosas } from "/components/04_MuchasCosas.js";
 export default function IntroComponent(){
     const [state, setState] = useCycle("1", "2","3", "4",
                                         "5", "6", "7");
-    var circle02Rotation = [0,0]
     const delay = ms => new Promise(res => setTimeout(res, ms));
     const fromCircle01UntilCircle03 = async () => { // me han hecho click cuando estoy en circle01! 
         setState() // 1 -> 2
@@ -53,44 +62,44 @@ export default function IntroComponent(){
                 <AnimatePresence>
                     {state == "7" && (<Circle04 />)}
                 </AnimatePresence> 
-            </div>    
+              
+            </div> 
         </motion.main>
-)};    
-    
-     const Circle01 = ({ onclick }) => {
+)};   
+const Circle01 = ({ onclick }) => {
      return(
          <>
             <motion.p className={styles.text_circle01}
-                    initial={{y: "-10vh", delay: 5, opacity: 0}}  
-                    animate={{y: 1, duration: 3, opacity : 1, transition : { delay: 3, duration: 2, ease: "easeInOut"}}} 
-                    exit={{y: "-20vh", duration: 4, opacity : 0,transition : { delay: 1, duration: 2, ease: "easeInOut" }}}
-                    >
-                        Hola, soy un punto
-                </motion.p>
-                <motion.div className={styles.circle01}
-                    initial={{ opacity : 0.3, scale:1.1 }}  
-                    animate={{ scale:1.2, opacity: 1, transition: { repeatType:"reverse", ease: 'easeInOut', duration: 1, repeat: Infinity }}}  
-                    exit={{ y: 100, transition: { delay: 3, duration: 2 }}}
-                    >
-                    <Splash onClick={onclick} className={styles.click} />
-                </motion.div>
-            </>
-     )
- }
-const Circle02 = ({}) => {
+                initial={{ y: "-10vh", delay: 1.5, opacity: 0}}  
+                animate={{ y: 1, duration: 4, opacity : 1,  transition : {  delay: 3, duration: 3,  ease: "easeInOut"}}} 
+                exit={{ y: "-20vh", duration: 4, opacity : 0, transition : { delay: 1, duration: 2, ease: "easeInOut" }}}
+                >Hola, soy un punto
+            </motion.p>
+            <motion.div className={styles.circle01}
+                initial={{ opacity : 0, rotate: 1, transition: {rotate: 360} }}  
+                animate={{ opacity: 1, transition: { delay: 1, duration: 10, repeat: Infinity, ease:'linear'} }}//la carita pasa de opacity 0 a 1 infinity x?
+                exit={{ y: 100, transition: { delay: 2, duration: 2 }}}
+                >
+                <Splash onClick={onclick} className={styles.click} />
+            </motion.div>
+        </>
+    )
+};
+const Circle02 = () => {
     return(
         <>
             <motion.div className={styles.circle02}
-                initial={{y: "100vh", scale: 0}}
-                animate={{y: 1, scale: 1, rotate:[0, 0, 0, 360, 0, 360, 0], transition:{ duration: 1, ease:"easeInOut" }}}
-                exit={{opacity: 1, scale: 0.1, opacity: 0, duration: 3 }}
+                initial={{ y: "100vh", scale: 0}}
+                animate={{ y: 1, scale: 1, rotate: [0,360,0, 360, 0, 360], transition:{ duration: 1, ease:"easeInOut" }}}
+                exit={{opacity: 1, scale: 0.1, opacity: 0, duration: 1 }} //animar circulo svg
             >
                 <Hola className={styles.circle02}/>
-                
             </motion.div>
             <motion.p className={styles.text_circle02}
-            >
-                Hola, soy un punto</motion.p>
+                initial={{ opacity: 0}}
+                animate={{ y: 2, opacity: 1}}
+                exit={{  opacity : 0, transition : { ease: "easeInOut" }}}
+            >Hola, soy un punto</motion.p>
         </>
     )
 }
@@ -98,9 +107,9 @@ const Circle02 = ({}) => {
      return(
          <>
              <motion.div className={styles.circle03}
-               initial={{rotate: [360], scale: 0, duration: 0.5 }}
+               initial={{rotate: [0,360,0, 360, 0, 360], scale: 0, duration: 0.5 }}
                 animate={{ scale: 1, transition:{ duration: 1, ease:"easeInOut" }}}
-                exit={{ opacity: 0, duration: 0.5 }}
+                exit={{ opacity: 0, duration: 0.5 }} //animar circulo svg
                 >
                 <SiJuegas onClick={onclick} className={styles.click}/>
             </motion.div> 
@@ -108,9 +117,8 @@ const Circle02 = ({}) => {
              <motion.p className={styles.text_circle03}
               initial={{ opacity: 0, delay: 2 }}
               animate={{ opacity: 1 }}
-              exit={{transition:{ opacity : 0, delay: 1 }}}
-            >
-                Si juegas conmigo...</motion.p>
+              exit={{ transition:{ opacity : 0, delay: 1 }}}
+            >Si juegas conmigo...</motion.p>
          </>
      )
  }      
@@ -118,22 +126,17 @@ const Circle04 = () => {
      return(
         <>
             <motion.div className={styles.circle04}
-               animate={{ rotate: [360, 0, 360, 0, 360, 0, 360, 0 ]}}
-               transition={{
-                   type: "spring",
-                   damping: 10,
-                   mass: 0.75,
-                   stiffness: 100,
-               }}
+            initial={{scale: 5, duration: 1 }}
+               animate={{ scale: 1, delay: 2, 
+               transition:{ opacity: 1, type: "spring", damping: 30, mass: 0.75 }}} //animar circulo svg
                 >
                 <MuchasCosas  className={styles.start}/>
             </motion.div>
             <motion.p className={styles.text_circle04}
                 initial={{ opacity: 0, delay: 1 }}
                 animate={{ opacity: 1 }}
-                exit={{ opacity: 0, transition: { delay: 1, duration: 10 }}}
-                >
-                    ¡muchas cosas puden pasar!</motion.p>
+                exit={{ opacity: 0, transition: { delay: 1, duration: 10 }}} 
+                >¡muchas cosas puden pasar!</motion.p>
         </>
     )
  }      
