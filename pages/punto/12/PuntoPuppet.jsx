@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import Imaginacion from './Imaginacion';
 import styles from './puppet.module.css';
 
 const PuntoPuppet = ({
@@ -46,12 +47,12 @@ const PuntoPuppet = ({
     <div className={styles.puppet}>
       <div className={styles.greenBlobContainer}>
         <motion.svg
-          animate={{ rotate: 360, scale: 13, y: '-50vh' }}
+          animate={{ rotate: 360, scale: 13, y: '-70vh' }}
           initial={{ rotate: 1, scale: 1, y: 0 }}
           transition={{
             rotate: { ease: 'linear', duration: 13, repeat: Infinity },
-            y: { ease: 'linear', duration: 4, delay: 4 },
-            scale: { ease: 'linear', duration: 4, delay: 4 },
+            y: { ease: 'linear', duration: 3, delay: 6 },
+            scale: { ease: 'linear', duration: 3, delay: 6 },
           }}
           id="green_blob"
           clipPath="M0 0h100v100H0z"
@@ -1624,6 +1625,14 @@ const PuntoPuppet = ({
           </g>
         </motion.svg>
       </div>
+      <motion.div
+        id="imaginacion"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 6, duration: 3 }}
+      >
+        <Imaginacion />
+      </motion.div>
     </div>
   );
 };

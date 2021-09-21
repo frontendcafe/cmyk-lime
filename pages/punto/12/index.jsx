@@ -4,6 +4,8 @@ import { motion, useMotionValue, useTransform } from 'framer-motion';
 import PuntoPuppet from './PuntoPuppet';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import Texto from './Texto';
+import ButtonHome from './ButtonHome';
 
 export default function Home() {
   const router = useRouter();
@@ -26,12 +28,25 @@ export default function Home() {
           drag
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1.5 }}
+          transition={{ delay: 3, duration: 1.5 }}
           className={styles.punto_container}
         >
           <PuntoPuppet smile eyesClosed />
         </motion.div>
       </main>
+      <div className={styles.text_container}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1.5 }}
+          className={styles.text_container}
+        >
+          <Texto siJuegas="Si juegas conmigo..." />
+        </motion.div>
+      </div>
+      <div className={styles.buttonHome}>
+        <ButtonHome />
+      </div>
     </div>
   );
 }

@@ -32,6 +32,17 @@
   height: 100px;
 }
 
+.text_container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.buttonHome {
+  display: block;
+  width: 100%;
+}
+
 .title {
   margin: 0;
   line-height: 1.15;
