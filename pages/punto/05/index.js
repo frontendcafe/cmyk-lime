@@ -71,7 +71,15 @@ export default function Page05() {
             <PuntoPuppet dragStart={handleDragStart} blushed eyesClosed />
           </motion.div>
         </main>
-        <div className={styles.textContainer}>Puedo Crecer...</div>
+
+        <motion.h1
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1.3 }}
+          className={styles.textContainer}
+        >
+          Puedo Crecer...
+        </motion.h1>
       </div>
       <div className={styles.homeBtnContainer}>
         <Link href={'/'}>

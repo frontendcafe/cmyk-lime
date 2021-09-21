@@ -105,8 +105,8 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-family: 'Amatic SC', cursive;
-  font-size: 48px;
+  font-family: 'Amatic SC', 'cursive';
+  font-size: 3rem;
 }
 
 .homeBtnContainer {
