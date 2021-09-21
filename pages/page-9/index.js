@@ -27,18 +27,23 @@ const PageNine = () => {
             dragConstraints: {
               top: -5,
               bottom: 5,
-              left: -600,
-              right: 0,
             },
             whileHover: { scale: 1.1 },
             initial: { opacity: 0 },
             animate: { opacity: 1 },
-            transition: { delay: 1, duration: 1.3 },
+            transition: { delay: 1, duration: 1.3, opacity: { duration: 1 } },
           }}
         />
       </div>
 
-      <h1 className={styles.h1}>MOVERME A LA IZQUIERDA...</h1>
+      <motion.h1
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1.3 }}
+        className={styles.h1}
+      >
+        MOVERME A LA IZQUIERDA...
+      </motion.h1>
 
       <div className={styles.iconhome}>
         <IconHome />

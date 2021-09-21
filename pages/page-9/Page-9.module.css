@@ -1,8 +1,8 @@
 .bodypagenine {
-  padding: 0 0.5rem;
+  padding: 2rem;
   margin: 0;
   height: 100vh;
-  display: grid;;
+  display: grid;
   place-items: center;
   grid-auto-flow: row;
   background: rgb(255, 255, 255);
@@ -23,6 +23,7 @@
 .h1 {
   display: grid;
   align-self: end;
+  justify-self: center;
   height: 0vh;
   font-family: 'Amatic SC', 'cursive';
   font-size: 3rem;
@@ -35,6 +36,7 @@
   display: grid;
   align-self: end;
   align-content: end;
+  justify-self: start;
   height: 0vh;
   max-width: 52vw;
   margin-top: 3rem;
