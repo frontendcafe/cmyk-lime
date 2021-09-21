@@ -1,6 +1,11 @@
 import Head from 'next/head';
-import styles from '../../../styles/12.module.css';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import styles from './12.module.css';
+import {
+  motion,
+  SharedLayoutContext,
+  useMotionValue,
+  useTransform,
+} from 'framer-motion';
 import PuntoPuppet from './PuntoPuppet';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
@@ -9,6 +14,7 @@ import ButtonHome from './ButtonHome';
 
 export default function Home() {
   const router = useRouter();
+  const [texto, setText] = useState('Si juegas conmigo...');
   const nextPage = () => {
     console.log('Finished');
   };
@@ -37,11 +43,24 @@ export default function Home() {
       <div className={styles.text_container}>
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1.5 }}
+          animate={{ opacity: 1, transitionEnd: { display: 'none' } }}
+          transition={{ delay: 1.5, duration: 4 }}
           className={styles.text_container}
         >
-          <Texto siJuegas="Si juegas conmigo..." />
+          <Texto siJuegas={'Si juegas conmigo...'} />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            delay: 6.5,
+            duration: 4,
+            display: { delay: 6.5, duration: 0 },
+          }}
+          className={styles.text_container}
+          styles={{ display: 'none' }}
+        >
+          <Texto siJuegas={'Tu imaginación es el límite...'} />
         </motion.div>
       </div>
       <div className={styles.buttonHome}>
