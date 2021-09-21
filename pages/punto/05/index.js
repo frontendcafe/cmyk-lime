@@ -17,6 +17,14 @@ export default function Page05() {
     position: 'absolute',
   });
 
+  const slashedTransition = {
+    delay: 2,
+    ease: 'linear',
+    duration: 1,
+    repeat: Infinity,
+    repeatDelay: 2,
+  };
+
   const handleDragStart = () => {
     setCircleStyle({ ...circleStyle, display: 'none' });
   };
@@ -39,34 +47,13 @@ export default function Page05() {
           >
             <motion.div
               style={circleStyle}
-              animate={{
-                x: 100,
-                y: -100,
-                opacity: [1, 0.5, 0],
-              }}
-              transition={{
-                delay: 2,
-                ease: 'linear',
-                duration: 1,
-                repeat: Infinity,
-                repeatDelay: 2,
-              }}
+              animate={{ x: -100, y: 100, opacity: [1, 0.5, 0] }}
+              transition={slashedTransition}
             ></motion.div>
             <motion.div
               style={circleStyle}
-              animate={{
-                x: -100,
-                y: 100,
-                opacity: [1, 0.5, 0],
-              }}
-              initial={{}}
-              transition={{
-                delay: 2,
-                ease: 'linear',
-                duration: 1,
-                repeat: Infinity,
-                repeatDelay: 2,
-              }}
+              animate={{ x: 100, y: -100, opacity: [1, 0.5, 0] }}
+              transition={slashedTransition}
             ></motion.div>
             <PuntoPuppet dragStart={handleDragStart} blushed eyesClosed />
           </motion.div>
