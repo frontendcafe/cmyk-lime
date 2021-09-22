@@ -25,8 +25,14 @@ export default function Page05() {
     repeatDelay: 2,
   };
 
+  const [faceState, setFaceState] = useState('blushed');
+  const [eyeState, setEyeState] = useState('eyesClosed');
+  const [text, setText] = useState('Puedo Crecer...');
+
   const handleDragStart = () => {
     setCircleStyle({ ...circleStyle, display: 'none' });
+    setFaceState('surprised');
+    setEyeState('eyesOpen');
   };
 
   return (
@@ -55,7 +61,11 @@ export default function Page05() {
               animate={{ x: 100, y: -100, opacity: [1, 0.5, 0] }}
               transition={slashedTransition}
             ></motion.div>
-            <PuntoPuppet dragStart={handleDragStart} blushed eyesClosed />
+            <PuntoPuppet
+              dragStart={handleDragStart}
+              face={faceState}
+              eyes={eyeState}
+            />
           </motion.div>
         </main>
 
@@ -65,7 +75,7 @@ export default function Page05() {
           transition={{ delay: 1, duration: 1.3 }}
           className={styles.textContainer}
         >
-          Puedo Crecer...
+          {text}
         </motion.h1>
       </div>
       <div className={styles.homeBtnContainer}>
