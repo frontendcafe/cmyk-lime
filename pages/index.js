@@ -6,8 +6,6 @@ import PuntoPuppet from '../components/PuntoPuppet';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-
-
 export default function Home() {
   const router = useRouter();
   const nextPage = () => {
@@ -23,7 +21,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <motion.div
-          drag="x"
+          drag
           whileHover={{ scale: 1.3 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
