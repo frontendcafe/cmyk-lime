@@ -187,7 +187,6 @@ const PuntoPuppet = ({
           id="face_main"
           /*Esto es lo que agregue para que mire hacia arriba, pero desactiva las variants*/
           initial={{ x: 0, y: 0 }}
-          animate={{ x: -12, y: -16 }}
           transition={{ duration: 5 }}
           /*---------- */
         >
