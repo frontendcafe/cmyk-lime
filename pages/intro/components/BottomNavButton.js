@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '../styles/BottomNav.module.css'
+import styles from '../styles/BottomNav.module.css';
 
-export const BottomNavButton = ({ text, route, icon }) => {
+const BottomNavButton = ({ text, route, icon }) => {
   return (
     <div className={styles.button}>
       <Link href={route}>
@@ -15,3 +15,4 @@ export const BottomNavButton = ({ text, route, icon }) => {
   );
 };
 
+export default BottomNavButton;
