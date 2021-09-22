@@ -1,13 +1,13 @@
-import styles from './intro/Intro.module.css';
+import styles from './intro/styles/Intro.module.css';
 import { motion, useCycle, AnimatePresence } from 'framer-motion';
 
-import ButtomNav from './intro/components/ButtomNav';
-
+import {BottomNav} from './intro/components/BottomNav';
+import { BottomNavButton } from './intro/components/BottomNavButton';
 //import { ButtomNav } from './intro/components/ButtomNav'
 //import { BottomNavButtom } from './intro/components/BottomNavButton'
 
-//render de ButtonNav 
-//pasar texto como props
+//render de ButtonNav ? 
+
 //rutear página siguiente
 //home buttom 
 
@@ -48,6 +48,7 @@ export default function IntroComponent(){
         setState() // 6 -> 7
     }
    return (
+       <>
         <motion.main className={styles.container}>
             <div className={styles.circle_container}>
                 <AnimatePresence>
@@ -62,10 +63,12 @@ export default function IntroComponent(){
                 <AnimatePresence>
                     {state == "7" && (<Circle04 />)}
                 </AnimatePresence> 
-              
-            </div> 
-        </motion.main>
-)};   
+            </div>      
+            {/* <BottomNav/> */}
+        </motion.main> 
+        </>
+)};
+  
 const Circle01 = ({ onclick }) => {
      return(
          <>
@@ -77,7 +80,7 @@ const Circle01 = ({ onclick }) => {
             </motion.p>
             <motion.div className={styles.circle01}
                 initial={{ opacity : 0, rotate: 1, transition: {rotate: 360} }}  
-                animate={{ opacity: 1, transition: { delay: 1, duration: 10, repeat: Infinity, ease:'linear'} }}//la carita pasa de opacity 0 a 1 infinity x?
+                animate={{ opacity: 1, transition: { delay: 1, duration: 3,  ease:'easeInOut'} }}
                 exit={{ y: 100, transition: { delay: 2, duration: 2 }}}
                 >
                 <Splash onClick={onclick} className={styles.click} />
@@ -91,7 +94,7 @@ const Circle02 = () => {
             <motion.div className={styles.circle02}
                 initial={{ y: "100vh", scale: 0}}
                 animate={{ y: 1, scale: 1, rotate: [0,360,0, 360, 0, 360], transition:{ duration: 1, ease:"easeInOut" }}}
-                exit={{opacity: 1, scale: 0.1, opacity: 0, duration: 1 }} //animar circulo svg
+                exit={{opacity: 1, duration: 0.1, rotate: 360 }} //animar circulo svg
             >
                 <Hola className={styles.circle02}/>
             </motion.div>
@@ -126,8 +129,8 @@ const Circle04 = () => {
      return(
         <>
             <motion.div className={styles.circle04}
-            initial={{scale: 5, duration: 1 }}
-               animate={{ scale: 1, delay: 2, 
+            initial={{ opacity: 0, duration: 2 }}
+               animate={{ opacity: 1,
                transition:{ opacity: 1, type: "spring", damping: 30, mass: 0.75 }}} //animar circulo svg
                 >
                 <MuchasCosas  className={styles.start}/>
