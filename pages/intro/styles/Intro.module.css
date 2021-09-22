@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-family: 'Amatic SC', 'cursive';
   background: transparent
     radial-gradient(closest-side at 50% 50%, #ffffff 0%, #e7e7e7 100%) 0% 0%
     no-repeat padding-box;
@@ -21,6 +22,7 @@
 .text_circle01 {
   text-align: center;
   margin-top: -10%;
+  font-family: 'Amatic SC', 'cursive';
 }
 
 /*-----------------------------*/

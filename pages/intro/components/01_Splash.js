@@ -1,12 +1,9 @@
+import { motion } from 'framer-motion';
 
-import { motion } from "framer-motion";
-
-export function Splash (props) {
+export function Splash(props) {
   return (
     <>
       <motion.svg
-        
-        
         xmlns="http://www.w3.org/2000/svg"
         width="150"
         height="150.001"
@@ -15,8 +12,8 @@ export function Splash (props) {
         animate={{ rotate: 360 }}
         initial={{ rotate: 1 }}
         transition={{ ease: 'linear', duration: 10, repeat: Infinity }}
-        >
-          <defs>
+      >
+        <defs>
           <radialGradient
             id="prefix__radial-gradient"
             cx={0.5}
@@ -29,7 +26,7 @@ export function Splash (props) {
             <stop offset={1} stopColor="#4ccd43" stopOpacity={0} />
           </radialGradient>
         </defs>
-        
+
         <g id="prefix__trazados" transform="rotate(-90 75 75)" fill="#4ccd43">
           <path
             id="prefix__Trazado_1"
@@ -239,7 +236,3 @@ export function Splash (props) {
     </>
   );
 }
-
-
-
-
