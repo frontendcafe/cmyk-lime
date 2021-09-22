@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './page-10.module.css';
-import AllFaces from '../../components/AllFaces';
-import IconHome from '../../components/IconHome';
+import AllFaces from '../AllFaces';
+import IconHome from '../IconHome';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const PageTen = () => {
@@ -39,7 +40,11 @@ const PageTen = () => {
       </motion.h1>
 
       <div className={styles.iconhome}>
-        <IconHome />
+        <Link href={'/'}>
+          <a>
+            <IconHome />
+          </a>
+        </Link>
       </div>
     </div>
   );

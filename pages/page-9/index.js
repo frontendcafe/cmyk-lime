@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './Page-9.module.css';
-import AllFaces from '../../components/AllFaces';
-import IconHome from '../../components/IconHome';
+import AllFaces from '../AllFaces';
+import IconHome from '../IconHome';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const PageNine = () => {
   const router = useRouter();
@@ -27,6 +28,7 @@ const PageNine = () => {
             dragConstraints: {
               top: -5,
               bottom: 5,
+              right: 600,
             },
             whileHover: { scale: 1.1 },
             initial: { opacity: 0 },
@@ -46,7 +48,11 @@ const PageNine = () => {
       </motion.h1>
 
       <div className={styles.iconhome}>
-        <IconHome />
+        <Link href={'/'}>
+           <a>
+          <IconHome />
+           </a>
+        </Link>
       </div>
     </div>
   );
