@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { useTransform, useMotionValue } from 'framer-motion';
+import { useEffect } from 'react';
+import styles from './05.module.css';
 
 const PuntoPuppet = ({
   // happy,
@@ -20,18 +22,36 @@ const PuntoPuppet = ({
   const x = useMotionValue(0);
   const scale = useTransform(
     x,
-    [25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300],
-    [1.32, 1.64, 1.96, 2.28, 2.6, 2.92, 3.26, 3.58, 3.9, 4.22, 4.54, 4.86]
+    [25, 50, 75, 100, 125, 150],
+    [1.5, 2, 2.5, 3, 3.5, 4]
+  );
+  const inverseScale = useTransform(
+    x,
+    [25, 50, 75, 100, 125, 150],
+    [0.67, 0.5, 0.4, 0.33, 0.28, 0.25]
+  );
+  const sizeScale = useTransform(
+    x,
+    [25, 50, 75, 100, 125, 150],
+    ['150', '200', '250', '300', '350', '400']
   );
 
-  const HandleDrag = () => {};
+  const handleDrag = () => {
+    console.log(scale.current);
+  };
+  // useEffect(() => {
+  //   const handleDrag = (x) => {
+  //     let testvvv = useMotionValue(x);
+  //   };
+  // })
 
   return (
     <motion.svg
-      width="100"
-      height="100"
-      // style={{ x: x, scale: scale }}
-
+      // width={sizeScale}
+      // height={sizeScale}
+      width="300"
+      height="300"
+      // style={{ scale: scale }}
       /* 
       si style va en el svg, como esta ahora, todo el svg crece y habria que reducir el scale de la 
       carita dinamicamente. si el style va en el green blob, la carita no necesita ser ajustada
@@ -45,6 +65,7 @@ const PuntoPuppet = ({
     >
       <g id="PuntoPuppet">
         <motion.g
+          style={{ scale: scale }}
           animate={{ rotate: 360 }}
           initial={{ rotate: 1 }}
           transition={{ ease: 'linear', duration: 10, repeat: Infinity }}
@@ -175,7 +196,13 @@ const PuntoPuppet = ({
             />
           </g>
         </motion.g>
-        <motion.g id="face_main">
+        <motion.g
+          id="face_main"
+          // className={styles.faceContainer}
+          // style={{
+          //   scale: inverseScale,
+          // }}
+        >
           <g id="Face" fill="#001E00">
             <motion.g
               id="MouthBlushed"
@@ -1641,8 +1668,10 @@ const PuntoPuppet = ({
               right: 50,
               bottom: 50,
             }}
-            onDrag={(e) => HandleDrag(e.x)}
+            style={{ x: x }}
+            // onDrag={(e) => handleDrag(e.x)}
             onDragStart={dragStart}
+            onDrag={handleDrag}
           >
             <path id="Vector ext" d="M150 0H0V150H150V0Z" opacity="0" />
           </motion.g>

@@ -40,6 +40,28 @@
   flex: 1;
 }
 
+.puppet {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.faceContainer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.greenBlobContainer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
