@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import styles from './05.module.css';
+import styles from './06.module.css';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import PuntoPuppet from './PuntoPuppet';
@@ -7,31 +7,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import homeIcon from './icon_home.svg';
 
-export default function Page05() {
-  const [circleStyle, setCircleStyle] = useState({
-    border: '2px dashed black',
-    borderRadius: '50%',
-    opacity: 1,
-    width: '100px',
-    height: '100px',
-    position: 'absolute',
-  });
-
-  const slashedTransition = {
-    delay: 2,
-    ease: 'linear',
-    duration: 1,
-    repeat: Infinity,
-    repeatDelay: 2,
-  };
-
-  const [faceState, setFaceState] = useState('blushed');
-  const [eyeState, setEyeState] = useState('eyesClosed');
-  const [text, setText] = useState('Puedo Crecer...');
+export default function Page06() {
+  const [faceState, setFaceState] = useState('surprised');
+  const [eyeState, setEyeState] = useState('eyesOpen');
 
   const handleDragStart = () => {
-    setCircleStyle({ ...circleStyle, display: 'none' });
-    setFaceState('surprised');
+    setFaceState('smile');
     setEyeState('eyesOpen');
   };
 
@@ -51,16 +32,6 @@ export default function Page05() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 1.5 }}
           >
-            <motion.div
-              style={circleStyle}
-              animate={{ x: -100, y: 100, opacity: [1, 0.5, 0] }}
-              transition={slashedTransition}
-            ></motion.div>
-            <motion.div
-              style={circleStyle}
-              animate={{ x: 100, y: -100, opacity: [1, 0.5, 0] }}
-              transition={slashedTransition}
-            ></motion.div>
             <PuntoPuppet
               dragStart={handleDragStart}
               face={faceState}
@@ -75,7 +46,7 @@ export default function Page05() {
           transition={{ delay: 1, duration: 1.3 }}
           className={styles.textContainer}
         >
-          {text}
+          {'... Y HACERME PEQUEÑO'}
         </motion.h1>
       </div>
       <div className={styles.homeBtnContainer}>

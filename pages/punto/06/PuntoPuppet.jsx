@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useTransform, useMotionValue } from 'framer-motion';
 import { useEffect } from 'react';
-import styles from './05.module.css';
+import styles from './06.module.css';
 
 const PuntoPuppet = ({
   // happy,
@@ -16,36 +16,28 @@ const PuntoPuppet = ({
   face,
   eyes,
 }) => {
-  /*
-  el svg invisible esta en la linea 1626, al fondo de todo
-  */
   const x = useMotionValue(0);
   const scale = useTransform(
     x,
-    [0, 25, 50, 75, 100, 125, 150],
-    [1, 1.5, 2, 2.5, 3, 3.5, 4]
+    [25, 50, 75, 100, 125, 150],
+    [1.5, 2, 2.5, 3, 3.5, 4]
   );
 
   const handleDrag = () => {
-    console.log('scale:' + scale.current);
+    console.log(scale.current);
   };
 
   const handleDragEnd = () => {
     // scale.current == 4 ?
   };
-  // useEffect(() => {
-  //   co.nst handleDrag = (x) => {
-  //     let testvvv = useMotionValue(x);
-  //   };
-  // })
 
   return (
     <div className={styles.puppet}>
       <div className={styles.greenBlobContainer} id="PuntoPuppet">
         <motion.svg
-          style={{ scale: scale }}
+          // style={{ scale: scale }}
           animate={{ rotate: 360 }}
-          initial={{ rotate: 1 }}
+          initial={{ rotate: 1, scale: 4 }}
           transition={{ ease: 'linear', duration: 10, repeat: Infinity }}
           id="green_blob"
           clipPath="M0 0h100v100H0z"
@@ -1640,26 +1632,28 @@ const PuntoPuppet = ({
               />
             </g>
           </g>
+          <motion.svg
+            drag
+            dragConstraints={{
+              top: -250,
+              left: -250,
+              right: 250,
+              bottom: 250,
+            }}
+            initial={{ scale: 4 }}
+            style={{ x: x }}
+            onDragStart={dragStart}
+            onDrag={handleDrag}
+            onDragEnd={handleDragEnd}
+          >
+            <motion.path
+              id="Vector ext"
+              d="M150 0H0V150H150V0Z"
+              opacity="0.4"
+            />
+          </motion.svg>
         </motion.svg>
       </div>
-      <motion.svg
-        // className={styles.puppet}
-        drag
-        dragConstraints={{
-          top: -10,
-          left: -10,
-          right: 10,
-          bottom: 10,
-        }}
-        initial={{ x: -20 }}
-        style={{ x: x, scale: scale }}
-        // onDrag={(e) => handleDrag(e.x)}
-        onDragStart={dragStart}
-        onDrag={handleDrag}
-        onDragEnd={handleDragEnd}
-      >
-        <path id="Vector ext" d="M150 0H0V150H150V0Z" opacity="0" />
-      </motion.svg>
     </div>
   );
 };

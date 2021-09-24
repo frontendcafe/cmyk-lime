@@ -1,56 +1,65 @@
 import { motion } from 'framer-motion';
-import { useTransform, useMotionValue } from 'framer-motion';
-import { useEffect } from 'react';
-import styles from './05.module.css';
+import { useState } from 'react';
+import Imaginacion from './Imaginacion';
+import styles from './puppet.module.css';
 
 const PuntoPuppet = ({
-  // happy,
-  // blushed,
-  // tongue,
-  // smile,
-  // surprised,
-  // eyesOpen,
-  // eyesClosed,
-  // eyesAngled,
-  dragStart,
-  face,
-  eyes,
+  faceScale,
+  happy,
+  blushed,
+  tongue,
+  smile,
+  surprised,
+  eyesOpen,
+  eyesClosed,
+  eyesAngled,
+  motionConfig = {},
 }) => {
-  /*
-  el svg invisible esta en la linea 1626, al fondo de todo
-  */
-  const x = useMotionValue(0);
-  const scale = useTransform(
-    x,
-    [0, 25, 50, 75, 100, 125, 150],
-    [1, 1.5, 2, 2.5, 3, 3.5, 4]
-  );
-
-  const handleDrag = () => {
-    console.log('scale:' + scale.current);
+  // Pueden manejar que cara muestra pasando props a este componente.
+  // Esta es una manera rapida de pasarle booleanos y marcar que cara mostrar
+  // No es la mejor estructura pero algo para mostrar como configurar un svg rapido
+  const [variant, setVariant] = useState('static');
+  const [savedX, setSavedX] = useState(null);
+  const variants = {
+    static: { x: 0 },
+    movingRight: {
+      x: 15,
+    },
+    movingLeft: {
+      x: -15,
+    },
   };
 
-  const handleDragEnd = () => {
-    // scale.current == 4 ?
+  const moveFace = (x) => {
+    if (savedX === null) {
+      setSavedX(x);
+      return;
+    }
+
+    if (savedX < x) setVariant('movingRight');
+
+    if (savedX > x) setVariant('movingLeft');
+
+    setSavedX(x);
   };
-  // useEffect(() => {
-  //   co.nst handleDrag = (x) => {
-  //     let testvvv = useMotionValue(x);
-  //   };
-  // })
 
   return (
     <div className={styles.puppet}>
-      <div className={styles.greenBlobContainer} id="PuntoPuppet">
+      <div className={styles.greenBlobContainer}>
         <motion.svg
-          style={{ scale: scale }}
-          animate={{ rotate: 360 }}
-          initial={{ rotate: 1 }}
-          transition={{ ease: 'linear', duration: 10, repeat: Infinity }}
+          animate={{ rotate: 360, scale: 13, y: '-50vh' }}
+          initial={{ rotate: 1, scale: 1, y: 0 }}
+          transition={{
+            rotate: { ease: 'linear', duration: 13, repeat: Infinity },
+            y: { ease: 'linear', duration: 3, delay: 6 },
+            scale: { ease: 'linear', duration: 3, delay: 6 },
+          }}
           id="green_blob"
           clipPath="M0 0h100v100H0z"
           fill="#4CCD43"
           fillOpacity=".1"
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
         >
           <path
             id="Vector"
@@ -177,17 +186,12 @@ const PuntoPuppet = ({
       </div>
       <div className={styles.faceContainer}>
         <motion.svg
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
           id="face_main"
-          // className={styles.faceContainer}
-          // style={{
-          //   scale: inverseScale,
-          // }}
         >
           <g id="Face" fill="#001E00">
-            <motion.g
-              id="MouthBlushed"
-              fillOpacity={face == 'blushed' ? '0.12' : '0'}
-            >
+            <g id="MouthBlushed" fillOpacity={blushed ? mouth : '0'}>
               <g id="Smile">
                 <path
                   id="Vector_30"
@@ -410,8 +414,8 @@ const PuntoPuppet = ({
                   d="M63.056 61.123c1.228 1.136 2.808 1.738 4.43 1.688 2.264-.077 4.466-1.992 5.544-4.041a8.06 8.06 0 0 0 .73-4.617 7.803 7.803 0 0 0-1.938-4.196 6.754 6.754 0 0 0-2.333-1.57 6.387 6.387 0 0 0-5.387.294 6.892 6.892 0 0 0-2.172 1.816c-2.278 3.041-1.675 6.444.297 9.419.154.233.844-.41.663-.664a8.354 8.354 0 0 1-1.508-2.802l-.212-1.681c-.09-3.538 1.467-2.838 4.674 2.101 4.99 1.985 6.24 3.36 3.754 4.124a2.939 2.939 0 0 1-1.554.4c-1.749.104-3.467-.524-4.794-1.75-.295-.242-.42 1.299-.194 1.48Z"
                 />
               </g>
-            </motion.g>
-            <g id="MouthTongue" fillOpacity={face == 'tongue' ? '.12' : '0'}>
+            </g>
+            <g id="MouthTongue" fillOpacity={tongue ? '.12' : '0'}>
               <path
                 id="Vector_84"
                 d="M67.33 52.436c-3.099 2.328-6.327 4.624-10.245 5.532l-12.038.561c-5.212-.938-10.012-3.361-13.782-6.956-.16-.129-.387.167-.192.326a38.362 38.362 0 0 0 6.397 4.49 26.826 26.826 0 0 0 11.844 2.959 31.05 31.05 0 0 0 11.997-2.385A26.802 26.802 0 0 0 67.9 52.74c.35-.26-.383-.443-.57-.304Z"
@@ -808,7 +812,7 @@ const PuntoPuppet = ({
                 d="M47.64 60.48c-.003 1.587-.005 3.174-.005 4.76 0 .286 1.321-.73 1.322-1.093l.019-4.716c.001-.293-1.335.696-1.336 1.05Z"
               />
             </g>
-            <g id="MouthHappy" fillOpacity={face == 'happy' ? '.12' : '0'}>
+            <g id="MouthHappy" fillOpacity={happy ? '.12' : '0'}>
               <path
                 id="Vector_354"
                 d="M71.395 53.698c-1.613 3.947-3.67 7.513-6.996 10.216a11.05 11.05 0 0 1-6.363 2.976c-11.368 5.798-21.328.598-29.88-15.598l-.361.305c2.081.594 4.22.965 6.38 1.105 4.486.48 8.837.803 13.36.967 9.1.331 18.269.14 27.354.722.328.02-.846-1.502-1.327-1.5-6.782.022-13.565.026-20.348.011-4.68-.005-9.43.143-14.102-.15l-6.494-.679a13.516 13.516 0 0 1-4.51-.837.25.25 0 0 0-.36.305c1.593 4.735 3.737 9.128 7.73 12.336a24.36 24.36 0 0 0 10.068 4.96 23.55 23.55 0 0 0 15.098-1.757c6.012-2.884 9.589-7.835 12.055-13.849.154-.364-1.173.144-1.304.467Z"
@@ -882,10 +886,7 @@ const PuntoPuppet = ({
                 d="M69.64 53.357a21.435 21.435 0 0 1-8.375 11.298c-11.23 7.498-22.798 2.88-34.708-13.857l-.248.482c7.838 1.767 15.9 1.852 23.899 2.073 7.617.209 15.253.138 22.866.456.605.026-.083-.835-.425-.84-6.122-.06-12.242-.09-18.363-.165-4.214-.053-8.429-.113-12.64-.238a61.348 61.348 0 0 1-7.372-.472 35.31 35.31 0 0 1-7.772-1.383c-.357-.23-.401.24-.332.45 1.614 4.753 3.748 9.073 7.739 12.308a24.214 24.214 0 0 0 10.228 4.995c4.005.858 8.163.673 12.077-.537a24.855 24.855 0 0 0 9.525-5.78c2.877-2.711 4.4-5.996 5.856-9.578.132-.318-1.774.348-1.955.788Z"
               />
             </g>
-            <motion.g
-              id="MouthSmile"
-              fillOpacity={face == 'smile' ? '.12' : '0'}
-            >
+            <g id="MouthSmile" fillOpacity={smile ? '.12' : '0'}>
               <path
                 id="Vector_174"
                 d="M66.936 54.473c-1.297 3.38-2.952 6.435-5.628 8.75-1.4 1.419-3.197 2.314-5.118 2.549-9.147 4.965-17.16.512-24.041-13.36-.059-.187-.405-.032-.328.213 1.283 4.056 3.008 7.818 6.221 10.565 2.352 2.068 5.126 3.523 8.1 4.248 4.093.942 8.365.413 12.146-1.504 4.838-2.47 7.716-6.71 9.7-11.86.12-.313-.944.12-1.052.4Z"
@@ -1102,11 +1103,8 @@ const PuntoPuppet = ({
                 id="Vector_227"
                 d="m66.349 54.277 3.464 1.798c.309.16.02-1.137-.238-1.272-1.145-.593-2.29-1.184-3.437-1.776-.316-.161-.043 1.119.21 1.25Z"
               />
-            </motion.g>
-            <motion.g
-              id="RightEyeOpen"
-              fillOpacity={eyes == 'eyesOpen' ? '.12' : '0'}
-            >
+            </g>
+            <g id="RightEyeOpen" fillOpacity={eyesOpen ? '.12' : '0'}>
               <path
                 id="Vector_228"
                 d="M63.941 38.19c.885-3.867 6.96-2.093 4.407 2.585l-.797.943c-3.452.396-5.043-.654-4.773-3.149-.01-.242-.383-.182-.374-.03.083 1.53.259 2.79 1.564 3.727a3.199 3.199 0 0 0 1.902.58 3.213 3.213 0 0 0 1.877-.665 3.876 3.876 0 0 0 1.555-2.247 4.112 4.112 0 0 0-.261-2.777 3.128 3.128 0 0 0-1.41-1.442 2.867 2.867 0 0 0-1.942-.228c-1.452.368-2.04 1.445-2.368 2.903-.101.445.56.048.62-.2Z"
@@ -1179,11 +1177,8 @@ const PuntoPuppet = ({
                 id="Vector_245"
                 d="M62.547 37.992c.686-3.097 2.399-3.063 5.138.103a3.25 3.25 0 0 1-.295 1.918c-.073.3-.201.583-.378.83a2.236 2.236 0 0 1-.65.608c-2.005 1.355-3.625.274-4.859-3.242-.014-.26-.39-.252-.382-.046.058 1.524.253 2.779 1.53 3.724 2.279 1.687 5.351-.224 5.424-3.085a3.572 3.572 0 0 0-.598-2.303 3.198 3.198 0 0 0-1.87-1.32c-1.855-.395-2.961.874-3.377 2.615-.027.122.272.396.318.198Z"
               />
-            </motion.g>
-            <motion.g
-              id="LeftEyeOpen"
-              fillOpacity={eyes == 'eyesOpen' ? '.12' : '0'}
-            >
+            </g>
+            <g id="LeftEyeOpen" fillOpacity={eyesOpen ? '.12' : '0'}>
               <path
                 id="Vector_246"
                 d="M34.31 38.19c.885-3.867 6.96-2.093 4.407 2.584l-.796.942c-3.453.397-5.044-.653-4.774-3.148-.01-.241-.382-.181-.374-.03.084 1.53.26 2.791 1.564 3.727a3.198 3.198 0 0 0 1.902.58 3.213 3.213 0 0 0 1.878-.665 3.877 3.877 0 0 0 1.554-2.247 4.113 4.113 0 0 0-.26-2.776A3.13 3.13 0 0 0 38 35.715a2.868 2.868 0 0 0-1.942-.228c-1.453.368-2.041 1.444-2.368 2.902-.1.443.562.049.619-.2Z"
@@ -1256,8 +1251,8 @@ const PuntoPuppet = ({
                 id="Vector_263"
                 d="M32.92 37.992c.684-3.097 2.397-3.063 5.137.103.099.656-.005 1.329-.296 1.917-.072.3-.2.583-.377.83a2.234 2.234 0 0 1-.65.608c-2.005 1.355-3.625.274-4.86-3.242-.014-.26-.389-.252-.38-.046.057 1.523.252 2.779 1.528 3.724 2.28 1.687 5.352-.224 5.425-3.085a3.572 3.572 0 0 0-.598-2.302 3.198 3.198 0 0 0-1.87-1.32c-1.855-.395-2.96.873-3.377 2.614-.028.123.272.397.318.199Z"
               />
-            </motion.g>
-            <g id="BigMouth" fillOpacity={face == 'surprised' ? '.12' : '0'}>
+            </g>
+            <g id="BigMouth" fillOpacity={surprised ? '.12' : '0'}>
               <path
                 id="Vector_264"
                 d="M43.114 57.737c.082-2.006.606-3.98 1.546-5.821.766-2.1 2.852-2.538 6.26-1.313 3.652-1.665 5.941-1.184 6.866 1.444L46.044 68.246l-1.488-1.473c-2.141-2.422-2.48-6.032-2.501-8.928 0-.212-.426-.25-.425-.033.027 4.178.839 9.567 5.816 11.75.95.41 2.006.614 3.071.59a7.256 7.256 0 0 0 3.03-.73c3.201-1.419 5.119-4.515 5.835-7.421 1.236-5.023.14-13.725-7.226-14.754-1.573-.16-3.163.15-4.498.877-3.897 2.172-4.878 6.098-5.25 9.794-.04.427.682.046.706-.181Z"
@@ -1331,10 +1326,7 @@ const PuntoPuppet = ({
                 d="M41.534 57.557c0-1.643.328-3.274.97-4.823.419-1.338 1.347-2.52 2.64-3.36 1.622-2.053 4.055-2.598 7.3-1.637C61.943 55.5 58 58.752 40.614 57.493c0-.218-.426-.247-.424-.023.034 2.888.216 5.564 1.872 8.141 1.599 2.485 4.376 4.715 7.943 4.172 3.447-.524 5.911-3.252 7.137-5.835 1.075-2.352 1.497-4.883 1.233-7.396-.319-2.679-1.325-6.152-3.878-8.022a7.176 7.176 0 0 0-2.803-1.39 7.98 7.98 0 0 0-3.24-.131c-5.404 1.026-6.869 6.44-7.276 10.368-.015.117.338.356.356.18Z"
               />
             </g>
-            <motion.g
-              id="LeftEyeWink"
-              fillOpacity={eyes == 'eyesClosed' ? '.12' : '0'}
-            >
+            <g id="LeftEyeWink" fillOpacity={eyesClosed ? '.12' : '0'}>
               <path
                 id="Vector_282"
                 d="M33.115 40.488c2.7-1.94 4.575-1.817 5.626.372.116.169 1.19.892.913.362-.825-1.578-1.79-2.788-3.624-2.82-1.78-.03-2.779.66-3.925 2.097-.195.245.865.164 1.01-.01Z"
@@ -1407,11 +1399,8 @@ const PuntoPuppet = ({
                 id="Vector_299"
                 d="m31.532 40.238 6.283.569c.125.218.703.344.534.045-.76-1.36-1.59-2.699-3.26-2.83-1.706-.134-2.68.59-3.766 1.883-.106.127.058.514.209.333Z"
               />
-            </motion.g>
-            <motion.g
-              id="RightEyeWink"
-              fillOpacity={eyes == 'eyesClosed' ? '.12' : '0'}
-            >
+            </g>
+            <g id="RightEyeWink" fillOpacity={eyesClosed ? '.12' : '0'}>
               <path
                 id="Vector_300"
                 d="M62.253 40.485c2.7-1.938 4.575-1.814 5.626.371.116.169 1.189.891.912.362-.824-1.578-1.789-2.786-3.623-2.817-1.781-.03-2.78.66-3.925 2.094-.199.245.862.164 1.01-.01Z"
@@ -1484,11 +1473,8 @@ const PuntoPuppet = ({
                 id="Vector_317"
                 d="m60.667 40.234 6.283.568c.125.219.703.343.534.045-.76-1.359-1.59-2.696-3.26-2.828-1.705-.134-2.68.59-3.765 1.882-.106.128.059.514.208.333Z"
               />
-            </motion.g>
-            <g
-              id="RightEyeAngleClosed"
-              fillOpacity={eyes == 'eyesAngled' ? '.12' : '0'}
-            >
+            </g>
+            <g id="RightEyeAngleClosed" fillOpacity={eyesAngled ? '.12' : '0'}>
               <path
                 id="Vector_318"
                 d="m68.597 40.996-6.49-3.024-.147.286c2.803-.057 5.408-1.45 8.148-1.879.368-.057-.37-.416-.682-.312-.925.309-1.882.55-2.823.822-1.277.37-3.11 1.26-4.496 1.082-.179-.022-.467.162-.212.281l6.49 3.023c.186.09.436-.175.212-.28Z"
@@ -1562,10 +1548,7 @@ const PuntoPuppet = ({
                 d="M67.268 40.56c-2.163-1.004-4.325-2.01-6.487-3.016l.046.553c1.388-.306 2.782-.55 4.148-.933 1.227-.344 2.424-.795 3.678-1.065.208-.045.128-.377-.126-.317-.782.184-1.544.446-2.307.674-1.495.445-4.014 1.54-5.514 1.058-.325-.104-.186.494-.043.561l6.49 3.018c.383.18.32-.437.115-.533Z"
               />
             </g>
-            <g
-              id="LeftEyeAngleClosed"
-              fillOpacity={eyes == 'eyesAngled' ? '.12' : '0'}
-            >
+            <g id="LeftEyeAngleClosed" fillOpacity={eyesAngled ? '.12' : '0'}>
               <path
                 id="Vector_336"
                 d="M33.59 42.725c2.156-1.004 4.311-2.007 6.468-3.008.134-.063.023-.178-.052-.222-2.597-1.562-5.434-2.835-8.095-4.321-.182-.102-.484.124-.276.23.726.374 1.494.687 2.23 1.045 1.675.51 3.154 1.405 4.278 2.587.534.326.396.545-.415.656-1.813.84-3.627 1.682-5.44 2.526-.298.14 1.025.636 1.303.507Z"
@@ -1642,24 +1625,14 @@ const PuntoPuppet = ({
           </g>
         </motion.svg>
       </div>
-      <motion.svg
-        // className={styles.puppet}
-        drag
-        dragConstraints={{
-          top: -10,
-          left: -10,
-          right: 10,
-          bottom: 10,
-        }}
-        initial={{ x: -20 }}
-        style={{ x: x, scale: scale }}
-        // onDrag={(e) => handleDrag(e.x)}
-        onDragStart={dragStart}
-        onDrag={handleDrag}
-        onDragEnd={handleDragEnd}
+      <motion.div
+        id="imaginacion"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 6, duration: 3 }}
       >
-        <path id="Vector ext" d="M150 0H0V150H150V0Z" opacity="0" />
-      </motion.svg>
+        <Imaginacion />
+      </motion.div>
     </div>
   );
 };
