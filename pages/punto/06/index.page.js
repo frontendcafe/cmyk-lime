@@ -1,21 +1,12 @@
 import Head from 'next/head';
-import styles from './06.module.css';
+import styles from '../05/05.module.css';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import PuntoPuppet from './PuntoPuppet';
 import Link from 'next/link';
 import Image from 'next/image';
 import homeIcon from './icon_home.svg';
 
 export default function Page06() {
-  const [faceState, setFaceState] = useState('surprised');
-  const [eyeState, setEyeState] = useState('eyesOpen');
-
-  const handleDragStart = () => {
-    setFaceState('smile');
-    setEyeState('eyesOpen');
-  };
-
   return (
     <div className={styles.page}>
       <div className={styles.container}>
@@ -26,18 +17,9 @@ export default function Page06() {
         </Head>
 
         <main className={styles.main}>
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 1.5 }}
-          >
-            <PuntoPuppet
-              dragStart={handleDragStart}
-              face={faceState}
-              eyes={eyeState}
-            />
-          </motion.div>
+          <div>
+            <PuntoPuppet />
+          </div>
         </main>
 
         <motion.h1

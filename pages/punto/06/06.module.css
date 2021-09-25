@@ -39,11 +39,11 @@
   display: flex;
   flex: 1;
 }
-
 .puppet {
   position: relative;
-  height: 100%;
-  width: 100%;
+  margin: 0 auto;
+  height: 50%;
+  width: 50%;
 }
 
 .faceContainer {
@@ -60,6 +60,16 @@
   top: 0;
   height: 100%;
   width: 100%;
+}
+.invisibleContainer {
+  position: relative;
+  height: 160%;
+  width: 100%;
+}
+
+.rotatingContainer {
+  width: 100px;
+  height: 100px;
 }
 
 @media (max-width: 600px) {

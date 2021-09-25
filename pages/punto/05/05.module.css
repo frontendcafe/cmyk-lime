@@ -18,8 +18,8 @@
 
 .main {
   padding: 5rem 2rem;
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -28,7 +28,6 @@
 }
 
 .textContainer {
-  padding: 0 0.5rem;
   display: flex;
   font-family: 'Amatic SC', 'cursive';
   font-size: 3rem;
@@ -42,8 +41,15 @@
 
 .puppet {
   position: relative;
-  height: 100%;
-  width: 100%;
+  margin: 0 auto;
+  height: 50%;
+  width: 50%;
+}
+
+.invisibleContainer {
+  position: relative;
+  height: 140%;
+  width: 80%;
 }
 
 .faceContainer {
@@ -60,6 +66,11 @@
   top: 0;
   height: 100%;
   width: 100%;
+}
+
+.rotatingContainer {
+  width: 100px;
+  height: 100px;
 }
 
 @media (max-width: 600px) {

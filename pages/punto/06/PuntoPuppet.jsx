@@ -1,41 +1,77 @@
+import styles from './06.module.css';
 import { motion } from 'framer-motion';
 import { useTransform, useMotionValue } from 'framer-motion';
-import { useEffect } from 'react';
-import styles from './06.module.css';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
-const PuntoPuppet = ({
-  // happy,
-  // blushed,
-  // tongue,
-  // smile,
-  // surprised,
-  // eyesOpen,
-  // eyesClosed,
-  // eyesAngled,
-  dragStart,
-  face,
-  eyes,
-}) => {
+const PuntoPuppet = () => {
+  const router = useRouter();
+  const [faceState, setFaceState] = useState('surprised');
+  const [eyeStateR, setEyeStateR] = useState('eyeOpenR');
+  const [eyeStateL, setEyeStateL] = useState('eyeOpenL');
+  const [circleStyle, setCircleStyle] = useState({
+    border: '2px dashed black',
+    borderRadius: '50%',
+    opacity: 1,
+    width: '100px',
+    height: '100px',
+    position: 'absolute',
+  });
+
+  const slashedTransition = {
+    delay: 2,
+    ease: 'linear',
+    duration: 1,
+    repeat: Infinity,
+    repeatDelay: 2,
+  };
+
   const x = useMotionValue(0);
   const scale = useTransform(
     x,
-    [25, 50, 75, 100, 125, 150],
-    [1.5, 2, 2.5, 3, 3.5, 4]
+    [0, -25, -50, -75, -100, -125, -150],
+    [4, 3.5, 3, 2.5, 2, 1.5, 1]
   );
 
-  const handleDrag = () => {
-    console.log(scale.current);
+  const handleDragStart = () => {
+    setCircleStyle({ ...circleStyle, display: 'none' });
+    setFaceState('smile');
+    setEyeStateR('eyeOpenR');
+    setEyeStateL('eyeWinkL');
   };
 
   const handleDragEnd = () => {
-    // scale.current == 4 ?
+    if (scale.current == 1) {
+      router.push('/punto/07');
+    }
   };
 
   return (
     <div className={styles.puppet}>
+      <motion.div
+        style={circleStyle}
+        animate={{
+          x: -100,
+          y: 100,
+          opacity: [0, 1, 0.5, 0],
+        }}
+        initial={{ x: -200, y: 200, opacity: 0 }}
+        transition={slashedTransition}
+      ></motion.div>
+      <motion.div
+        style={circleStyle}
+        animate={{
+          x: 100,
+          y: -100,
+          opacity: [0, 1, 0.5, 0],
+        }}
+        initial={{ x: 200, y: -200, opacity: 0 }}
+        transition={slashedTransition}
+      ></motion.div>
       <div className={styles.greenBlobContainer} id="PuntoPuppet">
         <motion.svg
-          // style={{ scale: scale }}
+          className={styles.rotatingContainer}
+          style={{ scale: scale }}
           animate={{ rotate: 360 }}
           initial={{ rotate: 1, scale: 4 }}
           transition={{ ease: 'linear', duration: 10, repeat: Infinity }}
@@ -170,7 +206,9 @@ const PuntoPuppet = ({
       <div className={styles.faceContainer}>
         <motion.svg
           id="face_main"
-          // className={styles.faceContainer}
+          // width="100"
+          // height="100"
+          //className={styles.faceContainer}
           // style={{
           //   scale: inverseScale,
           // }}
@@ -178,7 +216,7 @@ const PuntoPuppet = ({
           <g id="Face" fill="#001E00">
             <motion.g
               id="MouthBlushed"
-              fillOpacity={face == 'blushed' ? '0.12' : '0'}
+              fillOpacity={faceState == 'blushed' ? '0.12' : '0'}
             >
               <g id="Smile">
                 <path
@@ -403,7 +441,10 @@ const PuntoPuppet = ({
                 />
               </g>
             </motion.g>
-            <g id="MouthTongue" fillOpacity={face == 'tongue' ? '.12' : '0'}>
+            <g
+              id="MouthTongue"
+              fillOpacity={faceState == 'tongue' ? '.12' : '0'}
+            >
               <path
                 id="Vector_84"
                 d="M67.33 52.436c-3.099 2.328-6.327 4.624-10.245 5.532l-12.038.561c-5.212-.938-10.012-3.361-13.782-6.956-.16-.129-.387.167-.192.326a38.362 38.362 0 0 0 6.397 4.49 26.826 26.826 0 0 0 11.844 2.959 31.05 31.05 0 0 0 11.997-2.385A26.802 26.802 0 0 0 67.9 52.74c.35-.26-.383-.443-.57-.304Z"
@@ -800,7 +841,7 @@ const PuntoPuppet = ({
                 d="M47.64 60.48c-.003 1.587-.005 3.174-.005 4.76 0 .286 1.321-.73 1.322-1.093l.019-4.716c.001-.293-1.335.696-1.336 1.05Z"
               />
             </g>
-            <g id="MouthHappy" fillOpacity={face == 'happy' ? '.12' : '0'}>
+            <g id="MouthHappy" fillOpacity={faceState == 'happy' ? '.12' : '0'}>
               <path
                 id="Vector_354"
                 d="M71.395 53.698c-1.613 3.947-3.67 7.513-6.996 10.216a11.05 11.05 0 0 1-6.363 2.976c-11.368 5.798-21.328.598-29.88-15.598l-.361.305c2.081.594 4.22.965 6.38 1.105 4.486.48 8.837.803 13.36.967 9.1.331 18.269.14 27.354.722.328.02-.846-1.502-1.327-1.5-6.782.022-13.565.026-20.348.011-4.68-.005-9.43.143-14.102-.15l-6.494-.679a13.516 13.516 0 0 1-4.51-.837.25.25 0 0 0-.36.305c1.593 4.735 3.737 9.128 7.73 12.336a24.36 24.36 0 0 0 10.068 4.96 23.55 23.55 0 0 0 15.098-1.757c6.012-2.884 9.589-7.835 12.055-13.849.154-.364-1.173.144-1.304.467Z"
@@ -876,7 +917,7 @@ const PuntoPuppet = ({
             </g>
             <motion.g
               id="MouthSmile"
-              fillOpacity={face == 'smile' ? '.12' : '0'}
+              fillOpacity={faceState == 'smile' ? '.12' : '0'}
             >
               <path
                 id="Vector_174"
@@ -1097,7 +1138,7 @@ const PuntoPuppet = ({
             </motion.g>
             <motion.g
               id="RightEyeOpen"
-              fillOpacity={eyes == 'eyesOpen' ? '.12' : '0'}
+              fillOpacity={eyeStateR == 'eyeOpenR' ? '.12' : '0'}
             >
               <path
                 id="Vector_228"
@@ -1174,7 +1215,7 @@ const PuntoPuppet = ({
             </motion.g>
             <motion.g
               id="LeftEyeOpen"
-              fillOpacity={eyes == 'eyesOpen' ? '.12' : '0'}
+              fillOpacity={eyeStateL == 'eyeOpenL' ? '.12' : '0'}
             >
               <path
                 id="Vector_246"
@@ -1249,7 +1290,10 @@ const PuntoPuppet = ({
                 d="M32.92 37.992c.684-3.097 2.397-3.063 5.137.103.099.656-.005 1.329-.296 1.917-.072.3-.2.583-.377.83a2.234 2.234 0 0 1-.65.608c-2.005 1.355-3.625.274-4.86-3.242-.014-.26-.389-.252-.38-.046.057 1.523.252 2.779 1.528 3.724 2.28 1.687 5.352-.224 5.425-3.085a3.572 3.572 0 0 0-.598-2.302 3.198 3.198 0 0 0-1.87-1.32c-1.855-.395-2.96.873-3.377 2.614-.028.123.272.397.318.199Z"
               />
             </motion.g>
-            <g id="BigMouth" fillOpacity={face == 'surprised' ? '.12' : '0'}>
+            <g
+              id="BigMouth"
+              fillOpacity={faceState == 'surprised' ? '.12' : '0'}
+            >
               <path
                 id="Vector_264"
                 d="M43.114 57.737c.082-2.006.606-3.98 1.546-5.821.766-2.1 2.852-2.538 6.26-1.313 3.652-1.665 5.941-1.184 6.866 1.444L46.044 68.246l-1.488-1.473c-2.141-2.422-2.48-6.032-2.501-8.928 0-.212-.426-.25-.425-.033.027 4.178.839 9.567 5.816 11.75.95.41 2.006.614 3.071.59a7.256 7.256 0 0 0 3.03-.73c3.201-1.419 5.119-4.515 5.835-7.421 1.236-5.023.14-13.725-7.226-14.754-1.573-.16-3.163.15-4.498.877-3.897 2.172-4.878 6.098-5.25 9.794-.04.427.682.046.706-.181Z"
@@ -1325,7 +1369,7 @@ const PuntoPuppet = ({
             </g>
             <motion.g
               id="LeftEyeWink"
-              fillOpacity={eyes == 'eyesClosed' ? '.12' : '0'}
+              fillOpacity={eyeStateL == 'eyeWinkL' ? '.12' : '0'}
             >
               <path
                 id="Vector_282"
@@ -1402,7 +1446,7 @@ const PuntoPuppet = ({
             </motion.g>
             <motion.g
               id="RightEyeWink"
-              fillOpacity={eyes == 'eyesClosed' ? '.12' : '0'}
+              fillOpacity={eyeStateR == 'eyeWinkR' ? '.12' : '0'}
             >
               <path
                 id="Vector_300"
@@ -1479,7 +1523,7 @@ const PuntoPuppet = ({
             </motion.g>
             <g
               id="RightEyeAngleClosed"
-              fillOpacity={eyes == 'eyesAngled' ? '.12' : '0'}
+              fillOpacity={eyeStateR == 'eyeAngledR' ? '.12' : '0'}
             >
               <path
                 id="Vector_318"
@@ -1556,7 +1600,7 @@ const PuntoPuppet = ({
             </g>
             <g
               id="LeftEyeAngleClosed"
-              fillOpacity={eyes == 'eyesAngled' ? '.12' : '0'}
+              fillOpacity={eyeStateL == 'eyeAngledL' ? '.12' : '0'}
             >
               <path
                 id="Vector_336"
@@ -1632,28 +1676,24 @@ const PuntoPuppet = ({
               />
             </g>
           </g>
-          <motion.svg
-            drag
-            dragConstraints={{
-              top: -250,
-              left: -250,
-              right: 250,
-              bottom: 250,
-            }}
-            initial={{ scale: 4 }}
-            style={{ x: x }}
-            onDragStart={dragStart}
-            onDrag={handleDrag}
-            onDragEnd={handleDragEnd}
-          >
-            <motion.path
-              id="Vector ext"
-              d="M150 0H0V150H150V0Z"
-              opacity="0.4"
-            />
-          </motion.svg>
         </motion.svg>
       </div>
+      <motion.svg
+        className={styles.invisibleContainer}
+        drag
+        dragConstraints={{
+          top: -10,
+          left: -10,
+          right: 10,
+          bottom: 10,
+        }}
+        initial={{ scale: 3 }}
+        style={{ x: x }}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+      >
+        <path id="Vector ext" d="M150 0H0V150H150V0Z" opacity="0" />
+      </motion.svg>
     </div>
   );
 };
