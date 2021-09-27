@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 
@@ -6,6 +8,7 @@ import styles from './08.module.css';
 import PuntoPuppet from './PuntoPuppet';
 
 export default function Home() {
+  const mainRef = useRef();
   return (
     <div className={styles.container}>
       <Head>
@@ -14,14 +17,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <main ref={mainRef} className={styles.main}>
         <PuntoPuppet
           motionConfig={{
-            drag: true,
-            dragConstraints: {
-              left: -2,
-              rigth: 2,
-            },
+            drag: 'y',
+            dragConstraints: mainRef,
+            top: 0,
+
             dragMomentum: false,
             whileHover: { scale: 1.1 },
             initial: { opacity: 0 },

@@ -2,6 +2,8 @@ import { useState } from 'react';
 
 import { motion } from 'framer-motion';
 
+import styles from './07.module.css';
+
 const PuntoPuppet = ({
   happy,
   blushed,
@@ -53,7 +55,7 @@ const PuntoPuppet = ({
       height="100"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g id="PuntoPuppet">
+      <g className={styles.greenBlobContainer} id="PuntoPuppet">
         <motion.g
           animate={{ rotate: 360 }}
           initial={{ rotate: 1 }}
