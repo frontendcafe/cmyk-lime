@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import PuntoPuppet from './PuntoPuppet';
 import ButtonHome from './ButtonHome';
 import Circle from './Circle';
+import { useImperativeHandle, useState } from 'react';
 
 const Punto11 = () => {
   return (
@@ -44,8 +45,9 @@ const Punto11 = () => {
                 transition: { delay: 1, duration: 1.2 },
               },
             }}
-            happy
-            eyesOpen
+
+            //happy
+            //eyesAngled
           />
         </motion.div>
       </main>

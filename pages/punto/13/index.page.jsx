@@ -1,11 +1,10 @@
 import Head from 'next/head';
-import styles from './Punto11.module.css';
+import styles from './Punto13.module.css';
 import { motion } from 'framer-motion';
 import PuntoPuppet from './PuntoPuppet';
 import ButtonHome from './ButtonHome';
-import Circle from './Circle';
 
-const Punto11 = () => {
+const Punto13 = () => {
   return (
     <div className={styles.container}>
       <Head>
@@ -16,19 +15,11 @@ const Punto11 = () => {
 
       <main className={styles.main}>
         <motion.div
-          className={styles.circleContainer}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1.5 }}
-        >
-          <Circle />
-        </motion.div>
-        <motion.div
           drag
           whileHover={{ scale: 1.1 }}
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1.5 }}
+          animate={{ opacity: 1, scale: 1.5 }}
+          transition={{ delay: 1, duration: 3 }}
           className={styles.faceContainer}
         >
           {/* Prueben cambiar de happy a blushed o a surprised y traten que abra los ojos */}
@@ -36,6 +27,10 @@ const Punto11 = () => {
           <PuntoPuppet
             motionConfig={{
               drag: true,
+              dragConstraints: {
+                top: -5,
+                bottom: 5,
+              },
               dragMomentum: false,
               whileHover: { scale: 1.1 },
               initial: { opacity: 0 },
@@ -44,8 +39,8 @@ const Punto11 = () => {
                 transition: { delay: 1, duration: 1.2 },
               },
             }}
-            happy
-            eyesOpen
+            smile
+            leftEyeWink
           />
         </motion.div>
       </main>
@@ -53,10 +48,10 @@ const Punto11 = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1.5 }}
+          transition={{ delay: 3, duration: 2 }}
           className={styles.text_container}
         >
-          <p className={styles.text}>Puedo ir en cualquier dirección</p>
+          <p className={styles.text}>¿Jugamos de nuevo?</p>
         </motion.div>
       </div>
       <div className={styles.buttonHome}>
@@ -66,4 +61,4 @@ const Punto11 = () => {
   );
 };
 
-export default Punto11;
+export default Punto13;
