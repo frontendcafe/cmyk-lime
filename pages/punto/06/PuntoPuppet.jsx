@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 
 const PuntoPuppet = () => {
   const router = useRouter();
+  const [scaling, setScaling] = useState(true);
   const [faceState, setFaceState] = useState('surprised');
   const [eyeStateR, setEyeStateR] = useState('eyeOpenR');
   const [eyeStateL, setEyeStateL] = useState('eyeOpenL');
@@ -16,6 +17,7 @@ const PuntoPuppet = () => {
     width: '100px',
     height: '100px',
     position: 'absolute',
+    userSelect: 'none',
   });
 
   const slashedTransition = {
@@ -42,6 +44,7 @@ const PuntoPuppet = () => {
 
   const handleDragEnd = () => {
     if (scale.current == 1) {
+      setScaling(false);
       router.push('/punto/07');
     }
   };
@@ -71,7 +74,8 @@ const PuntoPuppet = () => {
       <div className={styles.greenBlobContainer} id="PuntoPuppet">
         <motion.svg
           className={styles.rotatingContainer}
-          style={{ scale: scale }}
+          // style={{ scale: scale }}
+          style={{ scale: scaling ? scale : 1 }}
           animate={{ rotate: 360 }}
           initial={{ rotate: 1, scale: 4 }}
           transition={{ ease: 'linear', duration: 10, repeat: Infinity }}

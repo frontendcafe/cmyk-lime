@@ -8,6 +8,7 @@ const PuntoPuppet = () => {
   const router = useRouter();
   const [faceState, setFaceState] = useState('blushed');
   const [eyeState, setEyeState] = useState('eyesClosed');
+  const [scaling, setScaling] = useState(true);
 
   const [circleStyle, setCircleStyle] = useState({
     border: '2px dashed black',
@@ -16,6 +17,7 @@ const PuntoPuppet = () => {
     width: '100px',
     height: '100px',
     position: 'absolute',
+    userSelect: 'none',
   });
 
   const slashedTransition = {
@@ -40,6 +42,7 @@ const PuntoPuppet = () => {
 
   const handleDragEnd = () => {
     if (scale.current == 4) {
+      setScaling(false);
       router.push('/punto/06');
     }
   };
@@ -67,7 +70,7 @@ const PuntoPuppet = () => {
       <div className={styles.greenBlobContainer} id="PuntoPuppet">
         <motion.svg
           className={styles.rotatingContainer}
-          style={{ scale: scale }}
+          style={{ scale: scaling ? scale : 4 }}
           animate={{ rotate: 360 }}
           initial={{ rotate: 1 }}
           transition={{ ease: 'linear', duration: 10, repeat: Infinity }}
