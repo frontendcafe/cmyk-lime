@@ -4,12 +4,11 @@ import { useTransform, useMotionValue } from 'framer-motion';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-const PuntoPuppet = () => {
+const PuntoPuppet = ({ exitAnimation }) => {
   const router = useRouter();
   const [faceState, setFaceState] = useState('blushed');
   const [eyeState, setEyeState] = useState('eyesClosed');
   const [scaling, setScaling] = useState(true);
-
   const [circleStyle, setCircleStyle] = useState({
     border: '2px dashed black',
     borderRadius: '50%',
@@ -43,7 +42,10 @@ const PuntoPuppet = () => {
   const handleDragEnd = () => {
     if (scale.current == 4) {
       setScaling(false);
-      router.push('/punto/06');
+      exitAnimation();
+      setTimeout(() => {
+        router.push('/punto/06');
+      }, 2000);
     }
   };
 

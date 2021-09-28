@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import styles from '../05/05.module.css';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import PuntoPuppet from './PuntoPuppet';
 import Link from 'next/link';
@@ -7,6 +8,16 @@ import Image from 'next/image';
 import homeIcon from './icon_home.svg';
 
 export default function Page06() {
+  const [variant, setVariant] = useState('opacityStart');
+  const variants = {
+    opacityStart: { opacity: 1 },
+    opacityEnd: { opacity: 0 },
+  };
+
+  const exitAnimation = () => {
+    setVariant('opacityEnd');
+  };
+
   return (
     <div className={styles.page}>
       <div className={styles.container}>
@@ -18,13 +29,14 @@ export default function Page06() {
 
         <main className={styles.main}>
           <div>
-            <PuntoPuppet />
+            <PuntoPuppet exitAnimation={exitAnimation} />
           </div>
         </main>
 
         <motion.h1
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          variants={variants}
+          animate={variant}
           transition={{ delay: 1, duration: 1.3 }}
           className={styles.textContainer}
         >
