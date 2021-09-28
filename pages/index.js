@@ -2,6 +2,7 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import { motion } from 'framer-motion';
 
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -27,6 +28,7 @@ export default function Home() {
           </h1>
         </motion.div>
       </main>
+     
     </div>
   );
 }

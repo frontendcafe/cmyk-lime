@@ -12,9 +12,9 @@ export function Splash (props) {
         height="150.001"
         viewBox="0 0 150.001 150"
         {...props}
-        animate={{ rotate: 360 }}
-        initial={{ rotate: 1 }}
-        transition={{ ease: 'linear', duration: 10, repeat: Infinity }}
+          animate={{ rotate: 360 }}
+          initial={{ rotate: 1 }}
+          transition={{ ease: 'linear', duration: 10, repeat: Infinity }}
         >
           <defs>
           <radialGradient

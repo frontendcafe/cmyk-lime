@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import styles from '../styles/Intro.module.css'
+import styles from '../estilos/Intro.module.css'
 
 export function MuchasCosas(props) {
   return (
@@ -34,15 +34,12 @@ export function MuchasCosas(props) {
           <g id="prefix__star_1" transform="translate(324 277)"
           
           >
-            <motion.g className={styles.estrella}
+            <g className={styles.estrella}
               id="estrella" 
               data-name="Grupo 4"
               transform="matrix(0 -1 1 0 0 306.522)"
               fill="#4ccd43"
               
-              animate={{ rotate: -360, scale: 0.9, ease: "easeIn", duration: 1.5}}
-              initial={{  rotate: -1 }}
-              transition={{ scale: 3, ease: 'linear', duration: 8, repeat: Infinity }}
             >
               <path
                 id="prefix__Trazado_186"
@@ -247,7 +244,7 @@ export function MuchasCosas(props) {
                 transform="translate(22.776 28.291)"
                 opacity={0.076}
               />
-            </motion.g>
+            </g>
           </g>
         </g>
         <g id="prefix__circle_01_star" className={styles.circle_star} transform="translate(-39 -37)"
