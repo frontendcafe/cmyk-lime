@@ -10,6 +10,7 @@ const PuntoPuppet = ({
   eyesOpen,
   eyesClosed,
   eyesAngled,
+  onFaceDragEnd,
   motionConfig = {},
 }) => {
   // Pueden manejar que cara muestra pasando props a este componente.
@@ -62,8 +63,12 @@ const PuntoPuppet = ({
       {...motionConfig}
       onDrag={(e) => moveFace(e.x)}
       onDragStart={handleDragStart}
-      // onDragEnd={() => setVariant('static')}
-      onDragEnd={handleDragEnd}
+      onDragEnd={() => {
+        handleDragEnd();
+        if (onFaceDragEnd) {
+          onFaceDragEnd();
+        }
+      }}
       width="100"
       height="100"
       xmlns="http://www.w3.org/2000/svg"
@@ -206,12 +211,10 @@ const PuntoPuppet = ({
           id="face_main"
           /*Esto es lo que agregue para que mire hacia arriba, pero desactiva las variants*/
           initial={{ x: 0, y: 0 }}
-
           transition={
             //duration: 5
             transicion ? { duration: 5 } : { duration: 0 }
           }
-
         >
           <g id="Face" fill="#001E00">
             <g

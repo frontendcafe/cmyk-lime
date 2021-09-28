@@ -4,18 +4,12 @@ import { motion } from 'framer-motion';
 import PuntoPuppet from './PuntoPuppet';
 import ButtonHome from './ButtonHome';
 
+
 const Punto13 = () => {
   return (
     <div className={styles.container}>
-      <Head>
-        <title>CMYK - Lime</title>
-        <meta name="description" content="Interactive children app" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main className={styles.main}>
         <motion.div
-          drag
           whileHover={{ scale: 1.1 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, scale: 1.5 }}
@@ -26,7 +20,7 @@ const Punto13 = () => {
           {/* Pasar una prop asi es equivalente a happy={true} */}
           <PuntoPuppet
             motionConfig={{
-              drag: true,
+              drag: false,
               dragConstraints: {
                 top: -5,
                 bottom: 5,

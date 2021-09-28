@@ -1,4 +1,4 @@
-import styles from '../../styles/About.module.css';
+import styles from './about.module.css';
 
 const Team = ({ name1, name2 }) => {
   return (

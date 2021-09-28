@@ -1,14 +1,17 @@
-import Head from 'next/head';
-import styles from '../../../styles/09.module.css';
 import { motion } from 'framer-motion';
-import PuntoPuppet from '../../../components/PuntoPuppet';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+
+import BottomHome from '../../../components/BottomHome';
+import styles from './08.module.css';
+import PuntoPuppet from './PuntoPuppet';
 
 export default function Home() {
   const router = useRouter();
   const nextPage = () => {
-    console.log('Finished');
+    setTimeout(() => {
+      router.push('/punto/09');
+    }, 2000);
   };
   return (
     <div className={styles.container}>
@@ -19,14 +22,13 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        {/* Prueben cambiar de happy a blushed o a surprised y traten que abra los ojos */}
-        {/* Pasar una prop asi es equivalente a happy={true} */}
         <PuntoPuppet
+          onFaceDragEnd={nextPage}
           motionConfig={{
             drag: true,
             dragConstraints: {
-              top: -5,
-              bottom: 5,
+              left: -2,
+              rigth: 2,
             },
             dragMomentum: false,
             whileHover: { scale: 1.1 },
@@ -36,10 +38,22 @@ export default function Home() {
               transition: { delay: 1, duration: 1.2 },
             },
           }}
-          happy
+          smile
           eyesOpen
+          rightEyeOpen
         />
       </main>
+      <motion.h1
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1.3 }}
+        className={styles.textContainer}
+      >
+        DESLIZARME HACIA ABAJO,
+      </motion.h1>
+      <div className={styles.iconHome}>
+        <BottomHome />
+      </div>
     </div>
   );
 }

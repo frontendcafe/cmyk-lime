@@ -1,21 +1,20 @@
-import Head from 'next/head';
 import styles from './Punto13.module.css';
 import { motion } from 'framer-motion';
 import PuntoPuppet from './PuntoPuppet';
 import ButtonHome from './ButtonHome';
+import { useRouter } from 'next/router';
 
 const Punto13 = () => {
+  const router = useRouter();
+  const back = () => {
+    console.log('clicked');
+    router.push('/');
+  };
   return (
     <div className={styles.container}>
-      <Head>
-        <title>CMYK - Lime</title>
-        <meta name="description" content="Interactive children app" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main className={styles.main}>
         <motion.div
-          drag
+          onClick={back}
           whileHover={{ scale: 1.1 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, scale: 1.5 }}

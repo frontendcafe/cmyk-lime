@@ -1,11 +1,5 @@
-import Head from 'next/head';
 import styles from './12.module.css';
-import {
-  motion,
-  SharedLayoutContext,
-  useMotionValue,
-  useTransform,
-} from 'framer-motion';
+import { motion } from 'framer-motion';
 import PuntoPuppet from './PuntoPuppet';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
@@ -16,20 +10,12 @@ export default function Home() {
   const router = useRouter();
   const [texto, setText] = useState('Si juegas conmigo...');
   const nextPage = () => {
-    console.log('Finished');
+    router.push('/punto/13');
   };
 
   return (
     <div className={styles.container}>
-      <Head>
-        <title>CMYK - Lime</title>
-        <meta name="description" content="Interactive children app" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        {/* Prueben cambiar de happy a blushed o a surprised y traten que abra los ojos */}
-        {/* Pasar una prop asi es equivalente a happy={true} */}
+      <main onClick={nextPage} className={styles.main}>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

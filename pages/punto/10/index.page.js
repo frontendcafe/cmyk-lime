@@ -1,18 +1,26 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './page-10.module.css';
-import AllFaces from '../AllFaces';
-import IconHome from '../IconHome';
+import AllFaces from './AllFaces';
+import IconHome from './IconHome';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const PageTen = () => {
+  const router = useRouter();
+  const nextPage = () => {
+    console.log('nextPage() called');
+    setTimeout(() => {
+      router.push('/punto/11');
+    }, 1500);
+  };
   return (
     <div className={styles.bodypageten}>
       <div className={styles.allfaces}>
         <AllFaces
           happy
           eyesOpen
+          onFaceDragEnd={nextPage}
           motionConfig={{
             drag: true,
             drag: 'x',

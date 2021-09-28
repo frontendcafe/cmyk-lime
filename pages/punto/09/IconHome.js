@@ -1,6 +1,6 @@
 export default function IconHome(props) {
-    return (
-<svg
+  return (
+    <svg
       xmlns="http://www.w3.org/2000/svg"
       width="48"
       height="48"
@@ -414,5 +414,5 @@ export default function IconHome(props) {
         </g>
       </g>
     </svg>
-    )
+  );
 }

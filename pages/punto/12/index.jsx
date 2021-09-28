@@ -13,10 +13,12 @@ import Texto from './Texto';
 import ButtonHome from './ButtonHome';
 
 export default function Home() {
-  const router = useRouter();
   const [texto, setText] = useState('Si juegas conmigo...');
+  const router = useRouter();
   const nextPage = () => {
-    console.log('Finished');
+    setTimeout(() => {
+      router.push('/punto/13');
+    }, 2000);
   };
 
   return (
@@ -32,6 +34,7 @@ export default function Home() {
         {/* Pasar una prop asi es equivalente a happy={true} */}
         <motion.div
           drag
+          onDragEnd={nextPage}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 3, duration: 1.5 }}

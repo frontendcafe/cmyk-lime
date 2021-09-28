@@ -1,20 +1,20 @@
-import Head from 'next/head';
 import styles from './Punto11.module.css';
 import { motion } from 'framer-motion';
 import PuntoPuppet from './PuntoPuppet';
 import ButtonHome from './ButtonHome';
 import Circle from './Circle';
 import { useImperativeHandle, useState } from 'react';
+import { useRouter } from 'next/router';
 
 const Punto11 = () => {
+  const router = useRouter();
+  const nextPage = () => {
+    setTimeout(() => {
+      router.push('/punto/12');
+    }, 2000);
+  };
   return (
     <div className={styles.container}>
-      <Head>
-        <title>CMYK - Lime</title>
-        <meta name="description" content="Interactive children app" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main className={styles.main}>
         <motion.div
           className={styles.circleContainer}
@@ -25,7 +25,6 @@ const Punto11 = () => {
           <Circle />
         </motion.div>
         <motion.div
-          drag
           whileHover={{ scale: 1.1 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -35,6 +34,7 @@ const Punto11 = () => {
           {/* Prueben cambiar de happy a blushed o a surprised y traten que abra los ojos */}
           {/* Pasar una prop asi es equivalente a happy={true} */}
           <PuntoPuppet
+            onFaceDragEnd={nextPage}
             motionConfig={{
               drag: true,
               dragMomentum: false,
@@ -45,9 +45,6 @@ const Punto11 = () => {
                 transition: { delay: 1, duration: 1.2 },
               },
             }}
-
-            //happy
-            //eyesAngled
           />
         </motion.div>
       </main>

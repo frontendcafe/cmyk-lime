@@ -1,4 +1,4 @@
-import styles from '../../styles/About.module.css';
+import styles from './about.module.css';
 
 const Members = ({ rol, name }) => {
   return (

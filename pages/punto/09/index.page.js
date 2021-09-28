@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import styles from './Page-9.module.css';
-import AllFaces from '../AllFaces';
-import IconHome from '../IconHome';
+import styles from './page-9.module.css';
+import AllFaces from './AllFaces';
+import IconHome from './IconHome';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -11,7 +11,7 @@ const PageNine = () => {
   const nextPage = () => {
     console.log('nextPage() called');
     setTimeout(() => {
-      router.push('/page-10');
+      router.push('/punto/10');
     }, 1500);
   };
   return (
@@ -49,9 +49,9 @@ const PageNine = () => {
 
       <div className={styles.iconhome}>
         <Link href={'/'}>
-           <a>
-          <IconHome />
-           </a>
+          <a>
+            <IconHome />
+          </a>
         </Link>
       </div>
     </div>
