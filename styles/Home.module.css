@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,9 +15,6 @@
 }
 
 .main {
-  padding: 5rem 0;
-  height: 100%;
-  width: 100%;
   flex: 1;
   display: flex;
   flex-direction: column;
