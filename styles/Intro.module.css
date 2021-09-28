@@ -1,0 +1,87 @@
+
+/**/
+ .container{
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent radial-gradient(closest-side at 50% 50%, #FFFFFF 0%, #E7E7E7 100%) 0% 0% no-repeat padding-box;
+    
+} 
+.circle_container{
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/*--------------------------------*/
+.circle01{}
+.text_circle01{
+   text-align: center;
+   margin-top: -10%;
+    
+}
+
+/*-----------------------------*/
+.circle02{
+    margin-top: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.text_circle02{
+    text-align: center;
+
+}
+/*---------------------------*/
+.circle03{
+    margin-top: 50%;
+   
+}
+
+
+/*------------------------*/
+.circle04{
+    max-width: none;
+    margin-top: 50%;
+    margin-left: 25%;
+    
+}
+.text_circle04{
+    text-align: center;
+   
+}
+/*-------------------------*/
+.click{
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* animation-name: rotateIn;
+    animation-duration: 4s ease;
+    animation-fill-mode: both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto; */
+} 
+
+/* @keyframes rotateIn {
+    0% {
+        transform-origin: center;
+        transform: rotate3d(0, 0, 1, -200deg);
+        opacity: 0;
+    }
+    100% {
+        transform-origin: center;
+        transform: none;
+        opacity: 1;
+    }
+} */
+
+
+
+
+

@@ -21,7 +21,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <motion.div
-          drag="x"
+          drag
           whileHover={{ scale: 1.3 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

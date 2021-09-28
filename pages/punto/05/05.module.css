@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+.page {
+  background: rgb(255, 255, 255);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(231, 231, 231, 1) 35%
+  );
+}
+.container {
+  height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  padding: 5rem 2rem;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.textContainer {
+  display: flex;
+  font-family: 'Amatic SC', 'cursive';
+  font-size: 3rem;
+  user-select: none;
+}
+
+.homeBtnContainer {
+  padding: 0 0.5rem;
+  display: flex;
+  flex: 1;
+}
+
+.puppet {
+  position: relative;
+  margin: 0 auto;
+  height: 50%;
+  width: 50%;
+}
+
+.invisibleContainer {
+  position: relative;
+  height: 140%;
+  width: 80%;
+}
+
+.faceContainer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.greenBlobContainer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.rotatingContainer {
+  width: 100px;
+  height: 100px;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+}

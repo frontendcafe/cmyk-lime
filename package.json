@@ -7,16 +7,21 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "svg-to-jsx": "svgr < svgr/icon_about.svg > components/aboutIcon.js -svgo-config svgr/svgo.json --replace-attr-values '#8582B3={props.color}'"
   },
   "dependencies": {
     "@use-gesture/react": "*",
     "framer-motion": "^4.1.17",
     "next": "11.1.1",
+    "next-images": "^1.8.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "svg-to-jsx": "^1.0.3"
   },
   "devDependencies": {
+    "@svgr/cli": "^5.5.0",
+    "@svgr/webpack": "^5.5.0",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.1",
     "eslint-config-prettier": "^8.3.0",

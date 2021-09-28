@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 
 const PuntoPuppet = ({
   happy,
@@ -10,45 +9,14 @@ const PuntoPuppet = ({
   eyesOpen,
   eyesClosed,
   eyesAngled,
-  motionConfig = {},
+  rightEyeOpen,
+  leftEyesClosed,
 }) => {
   // Pueden manejar que cara muestra pasando props a este componente.
   // Esta es una manera rapida de pasarle booleanos y marcar que cara mostrar
   // No es la mejor estructura pero algo para mostrar como configurar un svg rapido
-  const [variant, setVariant] = useState('static');
-  const [savedX, setSavedX] = useState(null);
-  const variants = {
-    static: { x: 0 },
-    movingRight: {
-      x: 15,
-    },
-    movingLeft: {
-      x: -15,
-    },
-  };
-
-  const moveFace = (x) => {
-    if (savedX === null) {
-      setSavedX(x);
-      return;
-    }
-
-    if (savedX < x) setVariant('movingRight');
-
-    if (savedX > x) setVariant('movingLeft');
-
-    setSavedX(x);
-  };
-
   return (
-    <motion.svg
-      {...motionConfig}
-      onDrag={(e) => moveFace(e.x)}
-      onDragEnd={() => setVariant('static')}
-      width="100"
-      height="100"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
       <g id="PuntoPuppet">
         <motion.g
           animate={{ rotate: 360 }}
@@ -181,9 +149,9 @@ const PuntoPuppet = ({
             />
           </g>
         </motion.g>
-        <motion.g animate={variant} variants={variants} id="face_main">
+        <g id="face_main">
           <g id="Face" fill="#001E00">
-            <g id="MouthBlushed" fillOpacity={blushed ? mouth : '0'}>
+            <g id="MouthBlushed" fillOpacity={blushed ? '.12' : '0'}>
               <g id="Smile">
                 <path
                   id="Vector_30"
@@ -1318,7 +1286,7 @@ const PuntoPuppet = ({
                 d="M41.534 57.557c0-1.643.328-3.274.97-4.823.419-1.338 1.347-2.52 2.64-3.36 1.622-2.053 4.055-2.598 7.3-1.637C61.943 55.5 58 58.752 40.614 57.493c0-.218-.426-.247-.424-.023.034 2.888.216 5.564 1.872 8.141 1.599 2.485 4.376 4.715 7.943 4.172 3.447-.524 5.911-3.252 7.137-5.835 1.075-2.352 1.497-4.883 1.233-7.396-.319-2.679-1.325-6.152-3.878-8.022a7.176 7.176 0 0 0-2.803-1.39 7.98 7.98 0 0 0-3.24-.131c-5.404 1.026-6.869 6.44-7.276 10.368-.015.117.338.356.356.18Z"
               />
             </g>
-            <g id="LeftEyeWink" fillOpacity={eyesClosed ? '.12' : '0'}>
+            <g id="LeftEyeWink" fillOpacity={leftEyesClosed ? '.12' : '0'}>
               <path
                 id="Vector_282"
                 d="M33.115 40.488c2.7-1.94 4.575-1.817 5.626.372.116.169 1.19.892.913.362-.825-1.578-1.79-2.788-3.624-2.82-1.78-.03-2.779.66-3.925 2.097-.195.245.865.164 1.01-.01Z"
@@ -1615,9 +1583,9 @@ const PuntoPuppet = ({
               />
             </g>
           </g>
-        </motion.g>
+        </g>
       </g>
-    </motion.svg>
+    </svg>
   );
 };
 

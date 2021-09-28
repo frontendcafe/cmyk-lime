@@ -47,7 +47,7 @@ const PuntoPuppet = ({
     <div className={styles.puppet}>
       <div className={styles.greenBlobContainer}>
         <motion.svg
-          animate={{ rotate: 360, scale: 13, y: '-70vh' }}
+          animate={{ rotate: 360, scale: 13, y: '-50vh' }}
           initial={{ rotate: 1, scale: 1, y: 0 }}
           transition={{
             rotate: { ease: 'linear', duration: 13, repeat: Infinity },
