@@ -4,32 +4,41 @@ import { motion } from 'framer-motion';
 import BottomNav from '../components/BottomNav';
 import PuntoPuppet from '../components/PuntoPuppet';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 
 export default function Home() {
   const router = useRouter();
   const nextPage = () => {
-    console.log('Finished');
+    router.push('/punto/01');
   };
   return (
     <div className={styles.container}>
       <Head>
         <title>CMYK - Lime</title>
-        <meta name="description" content="Interactive children app" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
         <motion.div
+          onClick={nextPage}
           drag
-          whileHover={{ scale: 1.3 }}
-          initial={{ opacity: 0 }}
+          dragConstraints={{
+            top: 1,
+            bottom: 1,
+            left: 1,
+            right: 1,
+          }}
+          whileHover={{ scale: 1.6, cursor: 'pointer' }}
+          initial={{ opacity: 0, scale: 1.5 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1.5 }}
+          transition={{
+            opacity: {
+              delay: 1.5,
+              duration: 1.5,
+            },
+            cursor: { delay: 0 },
+            scale: { delay: 0.5, duration: 1 },
+          }}
         >
-          {/* Prueben cambiar de happy a blushed o a surprised y traten que abra los ojos */}
-          {/* Pasar una prop asi es equivalente a happy={true} */}
-          <PuntoPuppet happy eyesOpen />
+          <PuntoPuppet />
         </motion.div>
       </main>
       <BottomNav />

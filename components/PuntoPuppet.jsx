@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const PuntoPuppet = ({
@@ -11,12 +12,26 @@ const PuntoPuppet = ({
   eyesAngled,
   rightEyeOpen,
   leftEyesClosed,
+  motionConfig = {},
 }) => {
-  // Pueden manejar que cara muestra pasando props a este componente.
-  // Esta es una manera rapida de pasarle booleanos y marcar que cara mostrar
-  // No es la mejor estructura pero algo para mostrar como configurar un svg rapido
+  const [variant, setVariant] = useState('static');
+  const variants = {
+    static: { y: 0 },
+    movingTop: {
+      y: 15,
+    },
+    movingBottom: {
+      y: -15,
+    },
+  };
+
   return (
-    <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+    <motion.svg
+      {...motionConfig}
+      width="100"
+      height="100"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <g id="PuntoPuppet">
         <motion.g
           animate={{ rotate: 360 }}
@@ -149,7 +164,7 @@ const PuntoPuppet = ({
             />
           </g>
         </motion.g>
-        <g id="face_main">
+        <motion.g animate={variant} variants={variants} id="face_main">
           <g id="Face" fill="#001E00">
             <g id="MouthBlushed" fillOpacity={blushed ? '.12' : '0'}>
               <g id="Smile">
@@ -1064,7 +1079,7 @@ const PuntoPuppet = ({
                 d="m66.349 54.277 3.464 1.798c.309.16.02-1.137-.238-1.272-1.145-.593-2.29-1.184-3.437-1.776-.316-.161-.043 1.119.21 1.25Z"
               />
             </g>
-            <g id="RightEyeOpen" fillOpacity={eyesOpen ? '.12' : '0'}>
+            <g id="RightEyeOpen" fillOpacity={rightEyeOpen ? '.12' : '0'}>
               <path
                 id="Vector_228"
                 d="M63.941 38.19c.885-3.867 6.96-2.093 4.407 2.585l-.797.943c-3.452.396-5.043-.654-4.773-3.149-.01-.242-.383-.182-.374-.03.083 1.53.259 2.79 1.564 3.727a3.199 3.199 0 0 0 1.902.58 3.213 3.213 0 0 0 1.877-.665 3.876 3.876 0 0 0 1.555-2.247 4.112 4.112 0 0 0-.261-2.777 3.128 3.128 0 0 0-1.41-1.442 2.867 2.867 0 0 0-1.942-.228c-1.452.368-2.04 1.445-2.368 2.903-.101.445.56.048.62-.2Z"
@@ -1583,9 +1598,9 @@ const PuntoPuppet = ({
               />
             </g>
           </g>
-        </g>
+        </motion.g>
       </g>
-    </svg>
+    </motion.svg>
   );
 };
 
