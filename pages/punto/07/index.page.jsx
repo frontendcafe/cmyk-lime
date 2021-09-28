@@ -2,20 +2,12 @@ import { useRef } from 'react';
 
 import { motion } from 'framer-motion';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 
 import BottomHome from '../../../components/BottomHome';
 import styles from './07.module.css';
 import PuntoPuppet from './PuntoPuppet';
 
 export default function Home() {
-  const router = useRouter();
-  const nextPage = () => {
-    console.log('nextPage() called');
-    setTimeout(() => {
-      router.push('/punto/08');
-    }, 1500);
-  };
   const mainRef = useRef(null);
   return (
     <div className={styles.container}>
@@ -27,7 +19,6 @@ export default function Home() {
 
       <main ref={mainRef} className={styles.main}>
         <PuntoPuppet
-          onDragEnd={nextPage}
           motionConfig={{
             drag: 'y',
             dragConstraints: mainRef,
@@ -40,9 +31,6 @@ export default function Home() {
               transition: { delay: 1, duration: 1.2 },
             },
           }}
-          smile
-          eyesOpen
-          rightEyeOpen
         />
       </main>
       <motion.h1
