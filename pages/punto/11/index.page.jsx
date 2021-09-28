@@ -31,8 +31,6 @@ const Punto11 = () => {
           transition={{ delay: 1, duration: 1.5 }}
           className={styles.faceContainer}
         >
-          {/* Prueben cambiar de happy a blushed o a surprised y traten que abra los ojos */}
-          {/* Pasar una prop asi es equivalente a happy={true} */}
           <PuntoPuppet
             onFaceDragEnd={nextPage}
             motionConfig={{

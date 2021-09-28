@@ -38,18 +38,18 @@ export default function Home() {
           eyesOpen
           rightEyeOpen
         />
-        <motion.h1
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1.3 }}
-          className={styles.textContainer}
-        >
-          PUEDO IR HACIA ARRIBA,
-        </motion.h1>
-        <div className={styles.iconHome}>
-          <BottomHome />
-        </div>
       </main>
+      <motion.h1
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1.3 }}
+        className={styles.textContainer}
+      >
+        PUEDO IR HACIA ABAJO,
+      </motion.h1>
+      <div className={styles.iconHome}>
+        <BottomHome />
+      </div>
     </div>
   );
 }
