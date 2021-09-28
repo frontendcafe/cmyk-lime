@@ -4,7 +4,7 @@ import { useTransform, useMotionValue } from 'framer-motion';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-const PuntoPuppet = () => {
+const PuntoPuppet = ({ exitAnimation }) => {
   const router = useRouter();
   const [scaling, setScaling] = useState(true);
   const [faceState, setFaceState] = useState('surprised');
@@ -45,7 +45,10 @@ const PuntoPuppet = () => {
   const handleDragEnd = () => {
     if (scale.current == 1) {
       setScaling(false);
-      router.push('/punto/07');
+      exitAnimation();
+      setTimeout(() => {
+        router.push('/punto/07');
+      }, 2000);
     }
   };
 
