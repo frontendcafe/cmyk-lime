@@ -1,48 +1,30 @@
 import styles from './styles/Intro.module.css';
+import Link from 'next/link';
 import { motion, useCycle, AnimatePresence } from 'framer-motion';
-import { useRouter } from 'next/router';
+import { IconHome } from './components/IconHome';
 
-import { BottomNav } from './components/BottomNav';
-import { BottomNavButton } from './components/BottomNavButton';
-
-//rutear página siguiente
-//home buttom
-
-import { Splash } from './components/01_Splash.js';
+import { Splash } from './components/01_Splash';
 import { Hola } from './components/03_Hola.js';
 import { SiJuegas } from './components/02_SiJuegas.js';
 import { MuchasCosas } from './components/04_MuchasCosas.js';
 
-// Cada vez que tengo que esperar un input del usuario tendre que crear una funcion changeState dentro de
-//estas funciones e ir cambiando el estado apropiadamente usando delays y esperando a las animaciones
-//hasta que llegue a un estado en el que tenga que esperar input del usuario
-
-//orquestador:
 export default function IntroComponent() {
-  const router = useRouter();
   const [state, setState] = useCycle('1', '2', '3', '4', '5', '6', '7');
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
   const fromCircle01UntilCircle03 = async () => {
-    // me han hecho click cuando estoy en circle01!
-    setState(); // 1 -> 2
-    await delay(6000);
-    // espero 6 segundos a la animacion de salida de circle01
-    setState(); // 2 -> 3
-    await delay(200);
-    await delay(5000);
-    // espero 5 segundos a la animacion de entrada de circle02
-    setState(); // 3 -> 4
-    await delay(500);
-    // espero 0.5 segundos a la animacion de salida de circle02
-    setState(); // 4 -> 5 y espero a que me vuelvan a hacer click
+    setState();
+    await delay(6000); //1->2
+    setState();
+    await delay(200); //2->3
+    await delay(3000); //me han hecho click //3->4
+    setState();
+    await delay(500); //4->5
+    setState();
   };
   const fromCircle03UntilCircle07 = async () => {
-    // me han hecho click cuando estoy en circle03!
-    setState(); // 5 -> 6
-    await delay(300);
-    setState(); // 6 -> 7
-    await delay(2000);
-    router.push('/punto/05');
+    setState();
+    await delay(300); //5->6
+    setState();
   };
   return (
     <>
@@ -53,6 +35,7 @@ export default function IntroComponent() {
               <Circle01 onclick={() => fromCircle01UntilCircle03()} />
             )}
           </AnimatePresence>
+
           <AnimatePresence>{state == '3' && <Circle02 />}</AnimatePresence>
           <AnimatePresence>
             {state == '5' && (
@@ -61,12 +44,22 @@ export default function IntroComponent() {
           </AnimatePresence>
           <AnimatePresence>{state == '7' && <Circle04 />}</AnimatePresence>
         </div>
-        {/* <BottomNav/> */}
       </motion.main>
     </>
   );
 }
 
+const HomeButton = () => {
+  return (
+    <div className={styles.iconhome}>
+      <Link href={'/'}>
+        <a>
+          <IconHome />
+        </a>
+      </Link>
+    </div>
+  );
+};
 const Circle01 = ({ onclick }) => {
   return (
     <>
@@ -77,7 +70,7 @@ const Circle01 = ({ onclick }) => {
           y: 1,
           duration: 4,
           opacity: 1,
-          transition: { delay: 3, duration: 3, ease: 'easeInOut' },
+          transition: { delay: 3, duration: 3, easing: [0.42, 0, 0.6, 1] },
         }}
         exit={{
           y: '-20vh',
@@ -111,10 +104,9 @@ const Circle02 = () => {
         animate={{
           y: 1,
           scale: 1,
-          rotate: [0, 360, 0, 360, 0, 360],
-          transition: { duration: 2, ease: 'easeInOut' },
+          transition: { duration: 2, easing: [0.42, 0, 0.58, 1] },
         }}
-        exit={{ opacity: 1, duration: 0.1, rotate: 360 }} //animar circulo svg
+        exit={{ opacity: 1, duration: 0.1, rotate: 360 }}
       >
         <Hola className={styles.circle02} />
       </motion.div>
@@ -126,17 +118,24 @@ const Circle02 = () => {
       >
         Hola, soy un punto
       </motion.p>
+      <div>
+        <HomeButton />
+      </div>
     </>
   );
 };
+
 const Circle03 = ({ onclick }) => {
   return (
     <>
       <motion.div
         className={styles.circle03}
         initial={{ rotate: [0, 360, 0, 360, 0, 360], scale: 0, duration: 0.5 }}
-        animate={{ scale: 1, transition: { duration: 1, ease: 'easeInOut' } }}
-        exit={{ opacity: 0, duration: 0.5 }} //animar circulo svg
+        animate={{
+          scale: 1,
+          transition: { duration: 1, easing: [0.42, 0, 0.6, 1] },
+        }}
+        exit={{ opacity: 0, duration: 0.5 }}
       >
         <SiJuegas onClick={onclick} className={styles.click} />
       </motion.div>
@@ -149,21 +148,36 @@ const Circle03 = ({ onclick }) => {
       >
         Si juegas conmigo...
       </motion.p>
+      <div>
+        <HomeButton />
+      </div>
     </>
   );
 };
+
 const Circle04 = () => {
   return (
     <>
       <motion.div
         className={styles.circle04}
-        initial={{ opacity: 0, duration: 2 }}
+        initial={{ opacity: 0, y: '-15vh', delay: 0.3 }}
         animate={{
           opacity: 1,
-          transition: { opacity: 1, type: 'spring', damping: 30, mass: 0.75 },
-        }} //animar circulo svg
+          rotate: 360,
+          transition: {
+            easings: [0.56, 8, 0.56, 8],
+            type: 'spring',
+            delay: 0.4,
+            duration: 2,
+          },
+        }}
+        exit={{ stiffness: 100, opacity: 0, duration: 2 }}
       >
-        <MuchasCosas className={styles.start} />
+        <Link href={'/punto/05'}>
+          <a>
+            <MuchasCosas className={styles.start} />
+          </a>
+        </Link>
       </motion.div>
       <motion.p
         className={styles.text_circle04}
@@ -171,8 +185,11 @@ const Circle04 = () => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0, transition: { delay: 1, duration: 10 } }}
       >
-        ¡muchas cosas puden pasar!
+        ¡muchas cosas pueden pasar!
       </motion.p>
+      <div>
+        <HomeButton />
+      </div>
     </>
   );
 };

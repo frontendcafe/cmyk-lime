@@ -4,15 +4,11 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background: transparent radial-gradient(closest-side at 50% 50%, #FFFFFF 0%, #E7E7E7 100%) 0% 0% no-repeat padding-box ;
-  background-size: auto;
-  position:fixed;
-  top:-50%;
-  left:-50%;
-  width:200%;
-  height:200%;
+  background: transparent
+    radial-gradient(closest-side at 50% 50%, #ffffff 0%, #e7e7e7 100%) 0% 0%
+    no-repeat padding-box;
 }
- a {
+a {
   color: inherit;
   text-decoration: none;
 }
@@ -20,5 +16,3 @@ body {
 * {
   box-sizing: border-box;
 }
-
-
