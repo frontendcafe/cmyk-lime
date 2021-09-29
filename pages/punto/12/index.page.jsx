@@ -30,17 +30,21 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transitionEnd: { display: 'none' } }}
-          transition={{ delay: 1.5, duration: 4 }}
+          transition={{
+            delay: 1.5,
+            duration: 3,
+            display: { delay: 0, duration: 0.1 },
+          }}
           className={styles.text_container}
         >
           <Texto siJuegas={'Si juegas conmigo...'} />
         </motion.div>
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          animate={{ opacity: 1, display: 'block' }}
           transition={{
             delay: 6.5,
-            duration: 4,
+            duration: 3,
             display: { delay: 6.5, duration: 0 },
           }}
           className={styles.text_container}
