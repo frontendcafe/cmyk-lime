@@ -8,8 +8,8 @@ export default function IconHome(props) {
       viewBox="0 0 48 48"
     >
       <g id="icon_home 1">
-        <g id="Group" opacity="0.5">
-          <g id="Group_2" fill="#001E00" opacity="0.5">
+        <g id="Group" opacity="1">
+          <g id="Group_2" fill="#001E00" opacity="1">
             <path
               id="Vector"
               d="M12.227 37.705c.041 0 .131-.088.139-.088-.04 0-.13.088-.139.088z"

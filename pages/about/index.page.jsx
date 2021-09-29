@@ -1,6 +1,8 @@
 import styles from './about.module.css';
 import Members from './Members';
 import Team from './Team';
+import IconHome from './IconHome';
+import Link from 'next/link';
 
 const About = () => {
   return (
@@ -23,9 +25,13 @@ const About = () => {
           <Team name1="Karen Duarte" name2="Rortan" />
         </div>
       </div>
+      <Link href={'/'}>
+        <a className={styles.iconHome}>
+          <IconHome />
+        </a>
+      </Link>
     </main>
   );
 };
-
 
 export default About;

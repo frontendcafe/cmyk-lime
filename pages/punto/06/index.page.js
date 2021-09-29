@@ -4,8 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import PuntoPuppet from './PuntoPuppet';
 import Link from 'next/link';
-import Image from 'next/image';
-import homeIcon from './icon_home.svg';
+import IconHome from './IconHome';
 
 export default function Page06() {
   const [variant, setVariant] = useState('opacityStart');
@@ -46,7 +45,7 @@ export default function Page06() {
       <div className={styles.homeBtnContainer}>
         <Link href={'/'}>
           <a>
-            <Image alt="" src={homeIcon}></Image>
+            <IconHome />
           </a>
         </Link>
       </div>

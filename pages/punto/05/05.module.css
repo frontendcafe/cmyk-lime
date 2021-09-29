@@ -35,9 +35,10 @@
 }
 
 .homeBtnContainer {
-  padding: 0 0.5rem;
-  display: flex;
-  flex: 1;
+  padding: 2rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .puppet {

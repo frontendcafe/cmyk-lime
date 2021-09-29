@@ -1,4 +1,6 @@
 import styles from './more.module.css';
+import IconHome from './IconHome';
+import Link from 'next/link';
 
 const About = () => {
   return (
@@ -10,6 +12,11 @@ const About = () => {
           Nuevos libros y maneras de seguir aprendiendo
         </p>
       </div>
+      <Link href={'/'}>
+        <a className={styles.iconHome}>
+          <IconHome />
+        </a>
+      </Link>
     </main>
   );
 };

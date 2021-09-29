@@ -15,10 +15,15 @@ const Punto13 = () => {
       <main className={styles.main}>
         <motion.div
           onClick={back}
-          whileHover={{ scale: 1.1 }}
+          whileHover={{ cursor: 'pointer' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, scale: 1.5 }}
-          transition={{ delay: 1, duration: 3 }}
+          transition={{
+            delay: 1,
+            duration: 3,
+            cursor: { delay: 0 },
+            scale: { delay: 0.1, duration: 0.5 },
+          }}
           className={styles.faceContainer}
         >
           {/* Prueben cambiar de happy a blushed o a surprised y traten que abra los ojos */}

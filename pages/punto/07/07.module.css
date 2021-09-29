@@ -31,12 +31,10 @@
 }
 
 .iconHome {
-  display: grid;
-  align-self: start;
-  align-content: start;
-  height: 0vh;
-  max-width: 52vw;
-  margin-top: 3rem;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 2rem;
 }
 
 @media (max-width: 600px) {

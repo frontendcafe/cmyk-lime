@@ -16,24 +16,18 @@
     rgba(231, 231, 231, 1) 35%
   );
   opacity: 1;
-  min-height: 100vh;
-  padding: 0 0.5rem;
+  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 .h1 {
-  top: 500%;
-  left: 429px;
-  width: 9.88vw;
-  height: 5vh;
   font-family: 'Amatic SC', 'cursive';
   font-size: 2.2rem;
   text-align: center;
-  letter-spacing: 0px;
   color: #001e00;
   opacity: 1;
   display: flex;
@@ -42,15 +36,10 @@
 }
 
 .h2 {
-  top: 391%;
-  left: 277px;
-  width: 28vw;
-  height: 9vh;
   font-family: 'Amatic SC', 'cursive';
   font-size: 4rem;
   text-align: center;
   color: #4ccd43;
-  letter-spacing: 0px;
   opacity: 1;
   display: flex;
   flex-direction: column;
@@ -58,17 +47,21 @@
 }
 
 .p {
-  top: 2056%;
-  left: 170px;
-  width: 41vw;
-  height: 24vh;
   font-family: 'Roboto', sans-serif;
   font-size: 1.1rem;
-  letter-spacing: 0px;
+  line-height: 1.8rem;
   color: #666666;
   opacity: 1;
   text-align: left;
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 75ch;
+}
+
+.iconHome {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 2rem;
 }

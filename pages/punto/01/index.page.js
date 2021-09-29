@@ -1,7 +1,7 @@
 import styles from './styles/Intro.module.css';
 import Link from 'next/link';
 import { motion, useCycle, AnimatePresence } from 'framer-motion';
-import { IconHome } from './components/IconHome';
+import IconHome from './components/IconHome';
 
 import { Splash } from './components/01_Splash';
 import { Hola } from './components/03_Hola.js';
@@ -44,6 +44,7 @@ export default function IntroComponent() {
           </AnimatePresence>
           <AnimatePresence>{state == '7' && <Circle04 />}</AnimatePresence>
         </div>
+        <HomeButton />
       </motion.main>
     </>
   );
@@ -79,7 +80,7 @@ const Circle01 = ({ onclick }) => {
           transition: { delay: 1, duration: 2, ease: 'easeInOut' },
         }}
       >
-        Hola, soy un punto
+        ¿Empezamos?
       </motion.p>
       <motion.div
         className={styles.circle01}
@@ -118,9 +119,6 @@ const Circle02 = () => {
       >
         Hola, soy un punto
       </motion.p>
-      <div>
-        <HomeButton />
-      </div>
     </>
   );
 };
@@ -148,9 +146,6 @@ const Circle03 = ({ onclick }) => {
       >
         Si juegas conmigo...
       </motion.p>
-      <div>
-        <HomeButton />
-      </div>
     </>
   );
 };
@@ -187,9 +182,6 @@ const Circle04 = () => {
       >
         ¡muchas cosas pueden pasar!
       </motion.p>
-      <div>
-        <HomeButton />
-      </div>
     </>
   );
 };

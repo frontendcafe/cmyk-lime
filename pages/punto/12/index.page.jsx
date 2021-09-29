@@ -17,9 +17,10 @@ export default function Home() {
     <div className={styles.container}>
       <main onClick={nextPage} className={styles.main}>
         <motion.div
+          whileHover={{ cursor: 'pointer' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 3, duration: 1.5 }}
+          transition={{ delay: 3, duration: 1.5, cursor: { delay: 0 } }}
           className={styles.punto_container}
         >
           <PuntoPuppet smile eyesClosed />
